@@ -1,0 +1,87 @@
+.transition {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: var(--color-bg-dark);
+}
+
+.transition__bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 40%,
+    rgba(200, 149, 108, 0.15) 0%,
+    transparent 60%
+  );
+}
+
+.transition__content {
+  position: relative;
+  z-index: 10;
+  text-align: center;
+  padding: var(--space-2xl) var(--gutter);
+}
+
+.transition__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+/* Doorway visual */
+.transition__doorway {
+  width: 120px;
+  height: 200px;
+  margin-bottom: var(--space-lg);
+  will-change: transform, opacity;
+}
+
+.transition__door-frame {
+  width: 100%;
+  height: 100%;
+  border: 2px solid rgba(200, 149, 108, 0.4);
+  border-radius: 60px 60px 0 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.transition__door-light {
+  position: absolute;
+  inset: 4px;
+  border-radius: 56px 56px 0 0;
+  background: linear-gradient(
+    180deg,
+    rgba(200, 149, 108, 0.3) 0%,
+    rgba(200, 149, 108, 0.1) 50%,
+    rgba(200, 149, 108, 0.05) 100%
+  );
+}
+
+.transition__label {
+  color: var(--color-accent);
+}
+
+.transition__title {
+  color: var(--color-text-light);
+  text-shadow: 0 4px 40px rgba(0, 0, 0, 0.3);
+}
+
+.transition__subtitle {
+  color: var(--color-text-subtle);
+  max-width: 500px;
+}
+
+.transition__fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 20%;
+  background: linear-gradient(to top, var(--color-bg), transparent);
+  z-index: 11;
+  pointer-events: none;
+}

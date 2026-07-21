@@ -1,0 +1,257 @@
+.media-canvas {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* ---------- Image Renderer ---------- */
+.image-renderer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Sky */
+.image-renderer__sky {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  transition: background 0.1s linear;
+}
+
+/* Sun glow */
+.image-renderer__sun {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(
+    circle,
+    hsla(40, 90%, 85%, 0.8) 0%,
+    hsla(40, 80%, 70%, 0.3) 30%,
+    transparent 70%
+  );
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+/* Ground */
+.image-renderer__ground {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  z-index: 3;
+}
+
+.image-renderer__soil {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #8B7355 0%,
+    #6B5B45 40%,
+    #5A4A38 100%
+  );
+}
+
+.image-renderer__grass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    #7A9E5F 0%,
+    #6B8E4E 20%,
+    #5C7E3E 60%,
+    #4D6E30 100%
+  );
+}
+
+/* Construction Container */
+.image-renderer__construction {
+  position: absolute;
+  bottom: 32%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50%;
+  max-width: 600px;
+  height: 45%;
+  z-index: 4;
+}
+
+/* Foundation */
+.image-renderer__foundation {
+  position: absolute;
+  bottom: 0;
+  left: 5%;
+  right: 5%;
+  height: 8%;
+  background: linear-gradient(180deg, #A0937E, #8A7D6A);
+  border-radius: 2px 2px 0 0;
+  transform-origin: bottom;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Frame / Columns */
+.image-renderer__frame {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;
+  right: 8%;
+  height: 70%;
+  display: flex;
+  justify-content: space-between;
+  background: 
+    /* Vertical beams */
+    repeating-linear-gradient(
+      90deg,
+      #9E8E7C 0px,
+      #9E8E7C 8px,
+      transparent 8px,
+      transparent 60px
+    ),
+    /* Horizontal beam */
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      transparent 48%,
+      #8A7D6A 48%,
+      #8A7D6A 52%,
+      transparent 52%
+    );
+  border-radius: 4px 4px 0 0;
+}
+
+/* Walls */
+.image-renderer__walls {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;
+  right: 8%;
+  height: 70%;
+  background: linear-gradient(
+    180deg,
+    #E8DDD0 0%,
+    #F2EBE2 30%,
+    #F5F0EA 100%
+  );
+  border-radius: 4px 4px 0 0;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Roof */
+.image-renderer__roof {
+  position: absolute;
+  bottom: 75%;
+  left: 2%;
+  right: 2%;
+  height: 22%;
+  background: linear-gradient(180deg, #6B5B45, #8B7355);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  will-change: transform, opacity;
+}
+
+/* Details (windows, door, cross) */
+.image-renderer__details {
+  position: absolute;
+  bottom: 8%;
+  left: 8%;
+  right: 8%;
+  height: 70%;
+  background:
+    /* Door */
+    radial-gradient(ellipse 18% 35% at 50% 90%, #6B5B45 0%, #6B5B45 90%, transparent 91%),
+    /* Left window */
+    radial-gradient(ellipse 8% 15% at 25% 45%, #87CEEB55 0%, #87CEEB33 80%, transparent 81%),
+    /* Right window */
+    radial-gradient(ellipse 8% 15% at 75% 45%, #87CEEB55 0%, #87CEEB33 80%, transparent 81%),
+    /* Cross on top - vertical */
+    linear-gradient(90deg, transparent 48.5%, var(--color-accent) 48.5%, var(--color-accent) 51.5%, transparent 51.5%),
+    /* Cross on top - horizontal */
+    linear-gradient(180deg, transparent 8%, var(--color-accent) 8%, var(--color-accent) 11%, transparent 11%);
+  background-size:
+    100% 100%,
+    100% 100%,
+    100% 100%,
+    100% 25%,
+    30% 100%;
+  background-position:
+    center,
+    center,
+    center,
+    center -15%,
+    center -15%;
+  background-repeat: no-repeat;
+}
+
+/* Landscaping */
+.image-renderer__landscaping {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 35%;
+  z-index: 5;
+  background:
+    /* Left bush */
+    radial-gradient(ellipse 15% 20% at 20% 75%, #4A7A35 0%, transparent 100%),
+    /* Right bush */
+    radial-gradient(ellipse 12% 18% at 80% 78%, #4A7A35 0%, transparent 100%),
+    /* Path */
+    linear-gradient(90deg, transparent 42%, #D4C5B3 42%, #D4C5B3 58%, transparent 58%);
+  background-size: 100% 100%;
+  pointer-events: none;
+}
+
+/* Floating particles / light rays */
+.image-renderer__particles {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.image-renderer__particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.6);
+  border-radius: 50%;
+  animation: floatParticle 4s ease-in-out infinite;
+}
+
+@keyframes floatParticle {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(-80px) scale(0.5);
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .image-renderer__construction {
+    width: 70%;
+    bottom: 30%;
+  }
+
+  .image-renderer__sun {
+    width: 200px;
+    height: 200px;
+  }
+}

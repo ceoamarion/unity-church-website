@@ -1,0 +1,166 @@
+/* ============================================
+   APP — Layout, Scroll Sections, Structure
+   ============================================ */
+
+.app {
+  position: relative;
+  width: 100%;
+}
+
+/* ---------- Navigation ---------- */
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: var(--nav-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gutter);
+  transition: background-color var(--duration-fast) var(--ease-out),
+              backdrop-filter var(--duration-fast) var(--ease-out);
+}
+
+.nav--scrolled {
+  background-color: var(--color-overlay-light);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.nav__logo {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--color-text);
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav__link {
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--color-text-muted);
+  transition: color var(--duration-fast) var(--ease-out);
+}
+
+.nav__link:hover {
+  color: var(--color-text);
+}
+
+.nav__cta {
+  padding: 0.5rem 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .nav__links {
+    display: none;
+  }
+}
+
+/* ---------- Section Spacing ---------- */
+.section-spacer {
+  height: var(--space-section);
+}
+
+/* ---------- Full-bleed Sticky Section (for construction) ---------- */
+.sticky-container {
+  position: relative;
+}
+
+.sticky-viewport {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ---------- Split Layout ---------- */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: center;
+}
+
+.split--reverse {
+  direction: rtl;
+}
+
+.split--reverse > * {
+  direction: ltr;
+}
+
+@media (max-width: 768px) {
+  .split {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .split--reverse {
+    direction: ltr;
+  }
+}
+
+/* ---------- Interior Section Card ---------- */
+.interior-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+}
+
+.interior-card__image {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  transition: transform var(--duration-slow) var(--ease-out);
+}
+
+.interior-card:hover .interior-card__image {
+  transform: scale(1.03);
+}
+
+/* ---------- Divider ---------- */
+.divider {
+  width: 60px;
+  height: 2px;
+  background: var(--color-accent);
+  margin: var(--space-md) 0;
+  border-radius: var(--radius-full);
+}
+
+.divider--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ---------- Background Gradient Overlays ---------- */
+.gradient-fade-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 40%;
+  background: linear-gradient(to top, var(--color-bg), transparent);
+  pointer-events: none;
+}
+
+.gradient-fade-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, var(--color-bg), transparent);
+  pointer-events: none;
+}

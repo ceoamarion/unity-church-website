@@ -1,0 +1,105 @@
+/* Construction Section — The Scroll-Driven Centerpiece */
+
+.construction {
+  position: relative;
+  /* 500vh of scroll distance = 5x the viewport height of scroll travel */
+  height: 500vh;
+}
+
+.construction__viewport {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Semi-transparent overlay for text readability */
+.construction__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(250, 248, 245, 0.1) 0%,
+    rgba(250, 248, 245, 0) 30%,
+    rgba(250, 248, 245, 0) 60%,
+    rgba(250, 248, 245, 0.4) 100%
+  );
+  z-index: 10;
+  pointer-events: none;
+}
+
+/* Phase text container */
+.construction__text-container {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.construction__phase-text {
+  position: absolute;
+  text-align: center;
+  max-width: 600px;
+  padding: 0 var(--gutter);
+  will-change: opacity, transform;
+}
+
+.construction__phase-label {
+  display: block;
+  color: var(--color-accent);
+  margin-bottom: var(--space-xs);
+}
+
+.construction__phase-title {
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+  text-shadow: 0 2px 20px rgba(250, 248, 245, 0.8);
+}
+
+.construction__phase-desc {
+  color: var(--color-text-muted);
+  max-width: 500px;
+  margin: 0 auto;
+  text-shadow: 0 1px 10px rgba(250, 248, 245, 0.9);
+}
+
+/* Journey text (From vision... / ...to reality) */
+.construction__journey {
+  position: absolute;
+  top: 12%;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  text-align: center;
+  pointer-events: none;
+}
+
+.construction__journey-text {
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  color: var(--color-text-muted);
+  will-change: opacity;
+}
+
+.construction__journey-text--end {
+  color: var(--color-accent);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .construction__text-container {
+    bottom: 8%;
+  }
+
+  .construction__phase-text {
+    padding: 0 1.5rem;
+  }
+
+  .construction__journey {
+    top: 8%;
+  }
+}
