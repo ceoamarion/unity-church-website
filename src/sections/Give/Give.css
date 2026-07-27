@@ -1,0 +1,23 @@
+/* Give Section Styles */
+
+.give {
+  padding: var(--space-section) 0;
+  background-color: var(--color-bg-alt);
+}
+
+.give__title {
+  margin-top: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.give__subtitle {
+  max-width: 680px;
+  margin: 0 auto var(--space-lg) auto;
+}
+
+.give__actions {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}

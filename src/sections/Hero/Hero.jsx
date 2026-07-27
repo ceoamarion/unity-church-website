@@ -1,71 +1,89 @@
-import { useEffect, useRef, useState } from 'react';
-import ScrollIndicator from '../../components/ScrollIndicator/ScrollIndicator';
+import ScrollScene from '../../components/ScrollScene/ScrollScene';
+import MediaCanvas from '../../components/MediaCanvas/MediaCanvas';
+import TextReveal from '../../components/TextReveal/TextReveal';
+import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import { SCENE_TIMELINE, getActiveScene } from '../../config/sceneTimeline';
 import './Hero.css';
 
 /**
- * Hero — Full-viewport opening shot with empty land, sky, and church title.
- * Parallax sky background with oversized typography and subtle scroll indicator.
+ * Hero — The scroll-driven construction experience.
+ * 
+ * This is the signature section of the website. A fullscreen pinned viewport
+ * where the visitor physically constructs Unity Church by scrolling.
+ * 
+ * Architecture:
+ *   ScrollScene (owns scroll → progress)
+ *     └── MediaCanvas → VideoRenderer (scrubs video to progress)
+ *     └── TextReveal × 8 (fade text overlays synced to scene boundaries)
+ *     └── ProgressBar (thin progress indicator)
+ *     └── ScrollIndicator (initial "Begin the Journey" prompt)
  */
 export default function Hero() {
-  const heroRef = useRef(null);
-  const [scrollY, setScrollY] = useState(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrollY(window.scrollY);
-    };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  const parallaxOffset = scrollY * 0.4;
-  const titleOpacity = Math.max(0, 1 - scrollY / 600);
-  const titleTransform = scrollY * 0.2;
-
   return (
-    <section ref={heroRef} className="hero" id="hero">
-      {/* Parallax Sky Background */}
-      <div
-        className="hero__sky"
-        style={{
-          transform: `translateY(${parallaxOffset}px)`,
-        }}
-      />
+    <ScrollScene height="600vh" id="hero" scrub={0.5}>
+      {({ progress, isActive, progressRef }) => {
+        const activeScene = getActiveScene(progress);
+        const phaseIndex = activeScene ? activeScene.phase : 1;
 
-      {/* Sun Glow */}
-      <div
-        className="hero__sun"
-        style={{
-          transform: `translate(-50%, ${-20 + parallaxOffset * 0.3}px) scale(${1 + scrollY * 0.001})`,
-          opacity: Math.max(0.3, 0.7 - scrollY * 0.001),
-        }}
-      />
+        return (
+          <>
+            {/* Video / Media Layer */}
+            <MediaCanvas
+              scrollProgress={progress}
+              currentPhase={phaseIndex}
+              renderer="video"
+              progressRef={progressRef}
+            />
 
-      {/* Ground / Landscape */}
-      <div className="hero__ground" />
+            {/* Dark gradient overlay for text legibility */}
+            <div className="hero__overlay" />
 
-      {/* Content Overlay */}
-      <div
-        className="hero__content"
-        style={{
-          opacity: titleOpacity,
-          transform: `translateY(${titleTransform}px)`,
-        }}
-      >
-        <span className="hero__label text-label">Est. 2026</span>
-        <h1 className="hero__title text-hero">
-          Unity<br />Church
-        </h1>
-        <p className="hero__subtitle text-accent">
-          "Where faith builds community"
-        </p>
-      </div>
+            {/* Scene text overlays — each fades in/out at its timeline range */}
+            <div className="hero__text-layer">
+              {SCENE_TIMELINE.map((scene) => (
+                <TextReveal
+                  key={scene.id}
+                  label={scene.label}
+                  title={scene.title}
+                  subtitle={scene.subtitle}
+                  progress={progress}
+                  range={scene.range}
+                  textStyle={scene.textStyle}
+                  phase={scene.phase}
+                />
+              ))}
+            </div>
 
-      {/* Bottom gradient for smooth transition */}
-      <div className="hero__fade" />
+            {/* Scroll indicator — visible only at the very beginning */}
+            <div
+              className="hero__scroll-hint"
+              style={{
+                opacity: progress < 0.03 ? 1 : Math.max(0, 1 - (progress - 0.03) * 30),
+                pointerEvents: progress > 0.05 ? 'none' : 'auto',
+              }}
+            >
+              <span className="hero__scroll-hint-text text-label">Begin the Journey</span>
+              <div className="hero__scroll-chevron">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                  <path d="M7 10l5 5 5-5" />
+                </svg>
+              </div>
+            </div>
 
-      {/* Scroll Indicator */}
-      <ScrollIndicator />
-    </section>
+            {/* Progress bar */}
+            <ProgressBar
+              progress={progress}
+              isVisible={isActive && progress > 0.02}
+              activeScene={activeScene}
+            />
+
+            {/* Top gradient vignette */}
+            <div className="hero__vignette-top" />
+            {/* Bottom gradient vignette */}
+            <div className="hero__vignette-bottom" />
+          </>
+        );
+      }}
+    </ScrollScene>
   );
 }

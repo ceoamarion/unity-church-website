@@ -5,7 +5,79 @@
   z-index: 0;
 }
 
-/* ---------- Image Renderer ---------- */
+/* ========== Video Renderer ========== */
+.video-renderer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: #0A0A0A;
+}
+
+.video-renderer__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.8s var(--ease-out-expo);
+}
+
+.video-renderer__video--loaded {
+  opacity: 1;
+}
+
+/* Loading state */
+.video-renderer__loading {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(
+    180deg,
+    #1A1A1A 0%,
+    #0A0A0A 50%,
+    #1A1A1A 100%
+  );
+  z-index: 1;
+}
+
+.video-renderer__pulse {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  opacity: 0.3;
+  animation: videoPulse 2s ease-in-out infinite;
+}
+
+@keyframes videoPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 0.1;
+  }
+}
+
+/* Error state */
+.video-renderer--error {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-dark);
+}
+
+.video-renderer__fallback {
+  text-align: center;
+  padding: var(--space-lg);
+}
+
+/* ========== Image Renderer (Legacy) ========== */
 .image-renderer {
   position: relative;
   width: 100%;
@@ -13,7 +85,6 @@
   overflow: hidden;
 }
 
-/* Sky */
 .image-renderer__sky {
   position: absolute;
   inset: 0;
@@ -21,7 +92,6 @@
   transition: background 0.1s linear;
 }
 
-/* Sun glow */
 .image-renderer__sun {
   position: absolute;
   top: 15%;
@@ -40,7 +110,6 @@
   will-change: transform, opacity;
 }
 
-/* Ground */
 .image-renderer__ground {
   position: absolute;
   bottom: 0;
@@ -53,27 +122,15 @@
 .image-renderer__soil {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    #8B7355 0%,
-    #6B5B45 40%,
-    #5A4A38 100%
-  );
+  background: linear-gradient(180deg, #8B7355 0%, #6B5B45 40%, #5A4A38 100%);
 }
 
 .image-renderer__grass {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    #7A9E5F 0%,
-    #6B8E4E 20%,
-    #5C7E3E 60%,
-    #4D6E30 100%
-  );
+  background: linear-gradient(180deg, #7A9E5F 0%, #6B8E4E 20%, #5C7E3E 60%, #4D6E30 100%);
 }
 
-/* Construction Container */
 .image-renderer__construction {
   position: absolute;
   bottom: 32%;
@@ -85,7 +142,6 @@
   z-index: 4;
 }
 
-/* Foundation */
 .image-renderer__foundation {
   position: absolute;
   bottom: 0;
@@ -98,7 +154,6 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Frame / Columns */
 .image-renderer__frame {
   position: absolute;
   bottom: 8%;
@@ -107,45 +162,23 @@
   height: 70%;
   display: flex;
   justify-content: space-between;
-  background: 
-    /* Vertical beams */
-    repeating-linear-gradient(
-      90deg,
-      #9E8E7C 0px,
-      #9E8E7C 8px,
-      transparent 8px,
-      transparent 60px
-    ),
-    /* Horizontal beam */
-    linear-gradient(
-      180deg,
-      transparent 0%,
-      transparent 48%,
-      #8A7D6A 48%,
-      #8A7D6A 52%,
-      transparent 52%
-    );
+  background:
+    repeating-linear-gradient(90deg, #9E8E7C 0px, #9E8E7C 8px, transparent 8px, transparent 60px),
+    linear-gradient(180deg, transparent 0%, transparent 48%, #8A7D6A 48%, #8A7D6A 52%, transparent 52%);
   border-radius: 4px 4px 0 0;
 }
 
-/* Walls */
 .image-renderer__walls {
   position: absolute;
   bottom: 8%;
   left: 8%;
   right: 8%;
   height: 70%;
-  background: linear-gradient(
-    180deg,
-    #E8DDD0 0%,
-    #F2EBE2 30%,
-    #F5F0EA 100%
-  );
+  background: linear-gradient(180deg, #E8DDD0 0%, #F2EBE2 30%, #F5F0EA 100%);
   border-radius: 4px 4px 0 0;
   box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Roof */
 .image-renderer__roof {
   position: absolute;
   bottom: 75%;
@@ -157,7 +190,6 @@
   will-change: transform, opacity;
 }
 
-/* Details (windows, door, cross) */
 .image-renderer__details {
   position: absolute;
   bottom: 8%;
@@ -165,32 +197,16 @@
   right: 8%;
   height: 70%;
   background:
-    /* Door */
     radial-gradient(ellipse 18% 35% at 50% 90%, #6B5B45 0%, #6B5B45 90%, transparent 91%),
-    /* Left window */
     radial-gradient(ellipse 8% 15% at 25% 45%, #87CEEB55 0%, #87CEEB33 80%, transparent 81%),
-    /* Right window */
     radial-gradient(ellipse 8% 15% at 75% 45%, #87CEEB55 0%, #87CEEB33 80%, transparent 81%),
-    /* Cross on top - vertical */
     linear-gradient(90deg, transparent 48.5%, var(--color-accent) 48.5%, var(--color-accent) 51.5%, transparent 51.5%),
-    /* Cross on top - horizontal */
     linear-gradient(180deg, transparent 8%, var(--color-accent) 8%, var(--color-accent) 11%, transparent 11%);
-  background-size:
-    100% 100%,
-    100% 100%,
-    100% 100%,
-    100% 25%,
-    30% 100%;
-  background-position:
-    center,
-    center,
-    center,
-    center -15%,
-    center -15%;
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 25%, 30% 100%;
+  background-position: center, center, center, center -15%, center -15%;
   background-repeat: no-repeat;
 }
 
-/* Landscaping */
 .image-renderer__landscaping {
   position: absolute;
   bottom: 0;
@@ -199,17 +215,13 @@
   height: 35%;
   z-index: 5;
   background:
-    /* Left bush */
     radial-gradient(ellipse 15% 20% at 20% 75%, #4A7A35 0%, transparent 100%),
-    /* Right bush */
     radial-gradient(ellipse 12% 18% at 80% 78%, #4A7A35 0%, transparent 100%),
-    /* Path */
     linear-gradient(90deg, transparent 42%, #D4C5B3 42%, #D4C5B3 58%, transparent 58%);
   background-size: 100% 100%;
   pointer-events: none;
 }
 
-/* Floating particles / light rays */
 .image-renderer__particles {
   position: absolute;
   inset: 0;
@@ -243,7 +255,6 @@
   }
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .image-renderer__construction {
     width: 70%;
