@@ -1,15 +1,13 @@
-import ScrollScene from '../../components/ScrollScene/ScrollScene';
-import MediaCanvas from '../../components/MediaCanvas/MediaCanvas';
-import TextReveal from '../../components/TextReveal/TextReveal';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
-import { SCENE_TIMELINE, getActiveScene } from '../../config/sceneTimeline';
+import { ScrollScene, MediaCanvas, TextReveal, ProgressBar } from '../../components/cinematic';
+import { SCENE_TIMELINE, getActiveScene } from '../../components/cinematic/sceneTimeline';
 import './Hero.css';
 
 /**
  * Hero — The scroll-driven construction experience.
  * 
- * This is the signature section of the website. A fullscreen pinned viewport
- * where the visitor physically constructs Unity Church by scrolling.
+ * PRESERVED: This component is kept intact for backward compatibility.
+ * It is currently unused on the Unity Church homepage (replaced by ImageHero),
+ * but remains available for the ConstructionPreview dev route and future U Impact use.
  * 
  * Architecture:
  *   ScrollScene (owns scroll → progress)
@@ -33,6 +31,7 @@ export default function Hero() {
               currentPhase={phaseIndex}
               renderer="video"
               progressRef={progressRef}
+              videoSrc="/video/construction.mp4"
             />
 
             {/* Dark gradient overlay for text legibility */}

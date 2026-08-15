@@ -1,8 +1,8 @@
 import { useRef, useState, useEffect, useCallback } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import MediaCanvas from '../../components/MediaCanvas/MediaCanvas';
-import ProgressBar from '../../components/ProgressBar/ProgressBar';
+import MediaCanvas from '../../components/cinematic/MediaCanvas/MediaCanvas';
+import ProgressBar from '../../components/cinematic/ProgressBar/ProgressBar';
 import './Construction.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -118,6 +118,7 @@ export default function Construction() {
           <MediaCanvas
             scrollProgress={progress}
             currentPhase={currentPhase + 1}
+            videoSrc="/video/construction.mp4"
           />
 
           {/* Overlay gradient for text readability */}
