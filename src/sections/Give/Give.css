@@ -1,23 +1,124 @@
 /* Give Section Styles */
 
 .give {
-  padding: var(--space-section) 0;
+  padding: clamp(3rem, 5vh, 4.5rem) 0;
   background-color: var(--color-bg-alt);
+}
+
+.give__header {
+  margin-bottom: clamp(1.5rem, 3vh, 2.25rem);
 }
 
 .give__title {
   margin-top: var(--space-xs);
-  margin-bottom: var(--space-sm);
+  margin-bottom: var(--space-xs);
 }
 
 .give__subtitle {
   max-width: 680px;
-  margin: 0 auto var(--space-lg) auto;
+  margin: 0 auto;
+}
+
+.give .container--content {
+  max-width: 1320px;
+}
+
+.give__grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  align-items: center;
+  margin-top: var(--space-sm);
+}
+
+.give__visual-card {
+  position: relative;
+  width: 100%;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-xl), 0 10px 40px rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  background: #111;
+}
+
+.give__visual-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: transform var(--duration-normal) var(--ease-out);
+}
+
+.give__visual-card:hover .give__visual-img {
+  transform: scale(1.02);
+}
+
+.give__content-card {
+  background: #FFFFFF;
+  padding: var(--space-lg);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.give__content-title {
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.give__content-text {
+  color: var(--color-text-muted);
+  line-height: 1.7;
+  margin-bottom: var(--space-md);
+}
+
+.give__features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: var(--space-lg);
+}
+
+.give__feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: var(--text-small);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.give__feature-check {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(200, 149, 108, 0.15);
+  color: var(--color-accent-deep);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  font-weight: 700;
+  flex-shrink: 0;
 }
 
 .give__actions {
   display: flex;
-  justify-content: center;
   gap: var(--space-sm);
   flex-wrap: wrap;
+}
+
+.give__btn-primary {
+  box-shadow: 0 4px 14px rgba(200, 149, 108, 0.4);
+}
+
+@media (max-width: 850px) {
+  .give__grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .give__content-card {
+    padding: var(--space-md);
+  }
 }

@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
+import ChurchLogo from './components/ChurchLogo/ChurchLogo';
 import ImageHero from './sections/ImageHero/ImageHero';
 import WhoWeAre from './sections/WhoWeAre/WhoWeAre';
-import InteriorShowcase from './sections/InteriorShowcase/InteriorShowcase';
 import Pastor from './sections/Pastor/Pastor';
 import Visit from './sections/Visit/Visit';
 import Give from './sections/Give/Give';
 import Footer from './sections/Footer/Footer';
-import ConstructionPreview from './pages/ConstructionPreview';
+import ConstructionPreview from './features/u-impact/pages/ConstructionPreview';
 import './App.css';
 
 /**
@@ -15,16 +15,20 @@ import './App.css';
  * 
  * Supports hash-based routing for dev previews:
  *   #/dev/construction-preview → Cinematic construction experience
- *   (default) → Unity Church homepage
+ *   (default) → Unity Christian Church homepage
  * 
  * Flow:
- * 1. ImageHero: Cinematic photo hero with the actual Unity Church building
- * 2. WhoWeAre: "More Than A Sunday" introduction
- * 3. InteriorShowcase: Explore the Campus
- * 4. Pastor: Our Leadership & Bio
- * 5. Visit: Service times & guest registration
- * 6. Give: Generosity & Building Fund
- * 7. Footer: Address & footer CTA
+ * 1. ImageHero: Cinematic photo hero with the actual Unity Christian Church building
+ * 2. WhoWeAre: "More Than A Sunday" introduction & mission statement
+ * 3. Pastor: Our Leadership & Bio
+ * 4. Visit: Service times & guest registration
+ * 5. Give: Generosity & Building Fund
+ * 6. Footer: Address & footer CTA
+ *
+ * NOTE: The building/space-exploration experience (InteriorShowcase,
+ * Construction, Transition, cinematic engine, etc.) has been separated
+ * into src/features/u-impact/ for future use in the U Impact website.
+ * See src/features/u-impact/README.md for details.
  */
 export default function App() {
   const { lenisRef } = useSmoothScroll();
@@ -64,7 +68,12 @@ export default function App() {
     <div className="app">
       {/* Dynamic Navigation Bar */}
       <nav className={`nav ${isNavScrolled ? 'nav--scrolled' : ''}`}>
-        <a href="#hero" className="nav__logo">Unity Church</a>
+        <a href="#hero" className="nav__logo">
+          <ChurchLogo
+            variant={isNavScrolled ? 'dark' : 'light'}
+            height={38}
+          />
+        </a>
 
         {/* Mobile hamburger */}
         <button
@@ -80,10 +89,9 @@ export default function App() {
 
         <div className={`nav__links ${isMobileMenuOpen ? 'nav__links--open' : ''}`}>
           <a href="#about" className="nav__link" onClick={handleNavClick}>About</a>
-          <a href="#spaces" className="nav__link" onClick={handleNavClick}>Spaces</a>
           <a href="#pastor" className="nav__link" onClick={handleNavClick}>Leadership</a>
           <a href="#visit" className="nav__link" onClick={handleNavClick}>Visit</a>
-          <a href="#give" className="nav__link" onClick={handleNavClick}>Give</a>
+          <a href="https://unitycc.breezechms.com/give/online" target="_blank" rel="noopener noreferrer" className="nav__link" onClick={handleNavClick}>Give</a>
           <a href="#visit" className="btn btn--primary nav__cta" onClick={handleNavClick}>Plan Your Visit</a>
         </div>
       </nav>
@@ -101,11 +109,10 @@ export default function App() {
         {/* Cinematic Photo Hero */}
         <ImageHero />
 
-        {/* "More Than A Sunday" Introduction */}
+        {/* "More Than A Sunday" Introduction & Mission */}
         <WhoWeAre />
 
-        {/* Post-Hero Sections */}
-        <InteriorShowcase />
+        {/* Church Sections */}
         <Pastor />
         <Visit />
         <Give />

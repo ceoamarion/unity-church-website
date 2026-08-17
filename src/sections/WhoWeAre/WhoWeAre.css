@@ -1,16 +1,16 @@
 /* ============================================
-   WhoWeAre — Post-hero introduction section
+   WhoWeAre — Post-hero introduction + mission
    ============================================ */
 
 .who-we-are {
   position: relative;
-  padding: var(--space-2xl) 0;
+  padding: clamp(3.5rem, 6vh, 5.5rem) 0;
   background-color: var(--color-bg);
   overflow: hidden;
 }
 
 .who-we-are__inner {
-  max-width: var(--narrow-width);
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 var(--gutter);
   text-align: center;
@@ -24,7 +24,7 @@
   line-height: 1.05;
   letter-spacing: -0.03em;
   color: var(--color-text);
-  margin-bottom: var(--space-md);
+  margin-bottom: var(--space-sm);
 }
 
 /* Accent word highlight */
@@ -41,29 +41,54 @@
   border-radius: var(--radius-full);
 }
 
-/* Body paragraph */
-.who-we-are__body {
-  font-family: var(--font-body);
-  font-size: var(--text-body-lg);
-  line-height: 1.8;
-  color: var(--color-text-muted);
-  max-width: 640px;
-  margin: 0 auto;
+/* Mission label */
+.who-we-are__label {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-md);
 }
 
-/* Accent quote */
-.who-we-are__accent {
-  font-family: var(--font-accent);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1.125rem, 2vw, 1.5rem);
-  color: var(--color-accent-deep);
-  margin-top: var(--space-lg);
+/* Mission statement blockquote */
+.who-we-are__mission {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0;
+  border: none;
+}
+
+.who-we-are__mission-text {
+  font-family: var(--font-body);
+  font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+  line-height: 1.85;
+  color: var(--color-text-muted);
+  margin-bottom: var(--space-md);
+}
+
+.who-we-are__mission-text:last-child {
+  margin-bottom: 0;
+}
+
+/* Logo accent beneath mission */
+.who-we-are__logo-accent {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-md);
+  opacity: 0.15;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .who-we-are {
     padding: var(--space-xl) 0;
+  }
+
+  .who-we-are__mission-text {
+    font-size: clamp(0.95rem, 3.5vw, 1.1rem);
+    line-height: 1.75;
   }
 }

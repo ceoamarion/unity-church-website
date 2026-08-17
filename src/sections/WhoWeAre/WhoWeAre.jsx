@@ -1,8 +1,9 @@
 import FadeSection from '../../components/FadeSection/FadeSection';
+import ChurchLogo from '../../components/ChurchLogo/ChurchLogo';
 import './WhoWeAre.css';
 
 /**
- * WhoWeAre — Post-hero introduction section.
+ * WhoWeAre — Post-hero introduction + official mission statement.
  * 
  * Creates a smooth visual bridge between the hero image and the rest
  * of the website. Uses oversized typography and generous whitespace
@@ -23,19 +24,32 @@ export default function WhoWeAre() {
           <div className="who-we-are__divider" />
         </FadeSection>
 
-        <FadeSection direction="up" delay={0.25}>
-          <p className="who-we-are__body">
-            Unity Church is a community built on faith, fellowship, and purpose. 
-            We exist to create a space where everyone — regardless of background 
-            or story — can experience authentic worship, meaningful connection, 
-            and real transformation.
-          </p>
+        {/* Mission Label */}
+        <FadeSection direction="up" delay={0.2}>
+          <span className="who-we-are__label">Our Mission</span>
         </FadeSection>
 
-        <FadeSection direction="none" delay={0.4}>
-          <p className="who-we-are__accent">
-            "Where faith builds community."
-          </p>
+        {/* Official Mission Statement */}
+        <FadeSection direction="up" delay={0.3}>
+          <blockquote className="who-we-are__mission">
+            <p className="who-we-are__mission-text">
+              We exist to pioneer and provide state-of-the-art ministry through 
+              powerful preaching, transformative teaching, fervent prayer, intentional 
+              discipleship, and impactful outreach—specifically to communities that 
+              deserve excellence but often go without it.
+            </p>
+            <p className="who-we-are__mission-text">
+              We aim to set a bold example for churches who desire to do the same, 
+              proving that limited resources don't have to limit ministry.
+            </p>
+          </blockquote>
+        </FadeSection>
+
+        {/* Logo accent beneath mission */}
+        <FadeSection direction="none" delay={0.45}>
+          <div className="who-we-are__logo-accent">
+            <ChurchLogo variant="dark" height={52} />
+          </div>
         </FadeSection>
       </div>
     </section>

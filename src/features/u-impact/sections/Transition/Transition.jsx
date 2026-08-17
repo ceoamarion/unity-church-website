@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import FadeSection from '../../components/FadeSection/FadeSection';
+import FadeSection from '../../../../components/FadeSection/FadeSection';
 import './Transition.css';
 
 /**

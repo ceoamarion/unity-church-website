@@ -3,8 +3,12 @@ import './Visit.css';
 
 /**
  * Visit — Service times, location details, directions, and planning a visit CTA.
+ * Updated with official service times (Sunday 10:30am, Monday 7:00pm, Wednesday 7:00pm)
+ * and address (1631 Trinity Church Rd, Alcolu, SC 29001).
  */
 export default function Visit() {
+  const directionsUrl = 'https://www.google.com/maps/search/?api=1&query=1631+Trinity+Church+Rd,+Alcolu,+SC+29001';
+
   return (
     <section className="visit section" id="visit">
       <div className="container">
@@ -21,7 +25,7 @@ export default function Visit() {
           </FadeSection>
           <FadeSection direction="up" delay={0.2}>
             <p className="text-body-lg text-muted visit__subtitle">
-              Join us this Sunday for worship, fellowship, and an inspiring message.
+              Join us this week for transformative worship, fervent prayer, and biblical teaching in Alcolu, SC.
             </p>
           </FadeSection>
         </div>
@@ -34,13 +38,16 @@ export default function Visit() {
               <h3 className="text-h3 visit__card-title">Service Times</h3>
               <ul className="visit__card-list">
                 <li>
-                  <strong>Sunday 9:00 AM</strong> — Traditional Worship
+                  <strong>Sunday 10:30 AM EST</strong><br />
+                  <span>Sunday Worship Service</span>
                 </li>
                 <li>
-                  <strong>Sunday 11:00 AM</strong> — Contemporary Worship
+                  <strong>Monday 7:00 PM EST</strong><br />
+                  <span>Corporate Prayer Meeting</span>
                 </li>
                 <li>
-                  <strong>Wednesday 7:00 PM</strong> — Midweek Bible Study
+                  <strong>Wednesday 7:00 PM EST</strong><br />
+                  <span>Midweek Bible Study</span>
                 </li>
               </ul>
             </div>
@@ -52,12 +59,13 @@ export default function Visit() {
               <div className="visit__card-icon">📍</div>
               <h3 className="text-h3 visit__card-title">Our Location</h3>
               <p className="visit__card-text">
-                123 Faith Avenue<br />
-                Community City, ST 12345
+                <strong>Unity Christian Church</strong><br />
+                1631 Trinity Church Rd<br />
+                Alcolu, SC 29001
               </p>
               <div className="visit__card-action">
                 <a 
-                  href="https://maps.google.com" 
+                  href={directionsUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   className="visit__link"
@@ -74,11 +82,18 @@ export default function Visit() {
               <div className="visit__card-icon">✨</div>
               <h3 className="text-h3 visit__card-title">What To Expect</h3>
               <p className="visit__card-text">
-                Come as you are! Friendly faces, uplifting music, vibrant kids programs, 
-                and fresh coffee waiting for you in the lobby.
+                Come as you are! Warm hospitality, spirit-filled worship, vibrant ministries for 
+                every generation, and a loving community ready to embrace you.
               </p>
               <div className="visit__card-action">
-                <button className="btn btn--primary">VIP Guest Registration</button>
+                <a 
+                  href={directionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn--primary"
+                >
+                  Visit This Sunday
+                </a>
               </div>
             </div>
           </FadeSection>

@@ -25,13 +25,15 @@
 }
 
 .nav__logo {
-  font-family: var(--font-display);
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  color: #FFFFFF;
-  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.4);
-  transition: color var(--duration-fast) var(--ease-out);
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  flex-shrink: 0;
+  transition: opacity var(--duration-fast) var(--ease-out);
+}
+
+.nav__logo:hover {
+  opacity: 0.8;
 }
 
 .nav__links {
@@ -63,11 +65,6 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.nav--scrolled .nav__logo {
-  color: var(--color-text);
-  text-shadow: none;
 }
 
 .nav--scrolled .nav__link {
@@ -205,24 +202,6 @@
   .split--reverse {
     direction: ltr;
   }
-}
-
-/* ---------- Interior Section Card ---------- */
-.interior-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: var(--radius-lg);
-}
-
-.interior-card__image {
-  width: 100%;
-  aspect-ratio: 16 / 10;
-  object-fit: cover;
-  transition: transform var(--duration-slow) var(--ease-out);
-}
-
-.interior-card:hover .interior-card__image {
-  transform: scale(1.03);
 }
 
 /* ---------- Divider ---------- */

@@ -8,7 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 /**
  * ImageHero — Apple-inspired cinematic photo hero.
  *
- * Uses the actual Unity Church exterior photograph as the visual centerpiece.
+ * Uses the actual Unity Christian Church exterior photograph as the visual centerpiece.
  * GSAP ScrollTrigger drives subtle parallax, scale, and darkening effects
  * to create a premium, alive-feeling hero without excessive motion.
  *
@@ -50,12 +50,12 @@ export default function ImageHero() {
         },
       });
 
-      // Image: slow scale up + subtle upward shift (parallax)
+      // Image: very subtle scale + slight upward shift (parallax)
       tl.to(
         media,
         {
-          scale: 1.08,
-          y: '-6%',
+          scale: 1.04,
+          y: '-3%',
           ease: 'none',
         },
         0
@@ -97,7 +97,7 @@ export default function ImageHero() {
       <div ref={mediaRef} className="image-hero__media">
         <img
           src="/images/unity-church-exterior.png"
-          alt="Unity Church — exterior view of the church building with its sign visible"
+          alt="Unity Christian Church — exterior view of the church building with its sign visible"
           className={`image-hero__img ${isLoaded ? 'image-hero__img--loaded' : 'image-hero__img--loading'}`}
           onLoad={() => setIsLoaded(true)}
           fetchPriority="high"
@@ -116,7 +116,7 @@ export default function ImageHero() {
 
       {/* Text content — animated by ScrollTrigger */}
       <div ref={contentRef} className="image-hero__content">
-        <h1 className="image-hero__title">Unity Church</h1>
+        <h1 className="image-hero__title">Unity Christian Church</h1>
         <p className="image-hero__subtitle">
           A Place to Worship.<br />
           A Place to Belong.<br />

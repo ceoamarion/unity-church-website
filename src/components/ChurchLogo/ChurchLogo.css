@@ -1,0 +1,25 @@
+/* ============================================
+   ChurchLogo — Official branding component
+   ============================================ */
+
+.church-logo {
+  display: block;
+  width: auto;
+  object-fit: contain;
+  aspect-ratio: auto;
+  /* Compensate for internal transparent padding in the asset.
+     The logo has ~15% whitespace around the mark, so we use
+     negative margin + scale to make it visually match the
+     intended dimensions without editing the PNG. */
+  margin: -4px 0;
+}
+
+/* Dark variant — default black logo for light backgrounds */
+.church-logo--dark {
+  filter: none;
+}
+
+/* Light variant — inverted white logo for dark backgrounds */
+.church-logo--light {
+  filter: brightness(0) invert(1);
+}

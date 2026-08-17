@@ -1,5 +1,5 @@
-import FadeSection from '../../components/FadeSection/FadeSection';
-import ParallaxImage from '../../components/ParallaxImage/ParallaxImage';
+import FadeSection from '../../../../components/FadeSection/FadeSection';
+import ParallaxImage from '../../../../components/ParallaxImage/ParallaxImage';
 import './InteriorShowcase.css';
 
 /**
@@ -194,7 +194,7 @@ export default function InteriorShowcase() {
         <FadeSection direction="up" delay={0.2}>
           <p className="text-body-lg text-muted interior-showcase__subheading">
             Designed with intention. Built with purpose.<br />
-            Discover the rooms that make Unity Church home.
+            Discover the rooms that make Unity Christian Church home.
           </p>
         </FadeSection>
       </div>
