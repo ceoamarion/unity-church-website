@@ -88,7 +88,7 @@ export default function TeamModal({ isOpen, onClose }) {
                   src={member.image}
                   alt={`${member.name} - ${member.role}`}
                   className="team-card__image"
-                  style={{ objectPosition: member.objectPosition || 'center 20%' }}
+                  style={{ objectPosition: member.objectPosition || 'center center' }}
                   loading="eager"
                 />
                 <div className="team-card__image-overlay" />
