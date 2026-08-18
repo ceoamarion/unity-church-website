@@ -2,7 +2,7 @@
 
 .pastor {
   position: relative;
-  padding: clamp(3rem, 5.5vh, 4.5rem) 0;
+  padding: clamp(6rem, 11vh, 9.5rem) 0;
   background-color: var(--color-bg-dark);
   color: var(--color-text-light);
   overflow: hidden;
@@ -10,21 +10,20 @@
 
 .pastor__grid {
   display: grid;
-  grid-template-columns: 0.9fr 1.15fr;
-  gap: clamp(1.5rem, 3.5vw, 3.5rem);
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: center;
 }
 
 .pastor__portrait-wrap {
   position: relative;
   width: 100%;
-  max-width: 400px;
-  max-height: min(480px, 58vh);
+  max-width: 480px;
   aspect-ratio: 4 / 5;
   margin: 0 auto;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-xl), 0 0 30px rgba(200, 149, 108, 0.15);
+  box-shadow: var(--shadow-xl), 0 0 40px rgba(200, 149, 108, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.12);
   transition: transform var(--duration-normal) var(--ease-out), box-shadow var(--duration-normal) var(--ease-out);
 }
