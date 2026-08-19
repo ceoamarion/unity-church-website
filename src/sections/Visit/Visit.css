@@ -2,7 +2,8 @@
 
 .visit {
   background-color: var(--color-bg);
-  padding: clamp(3rem, 5vh, 4.5rem) 0;
+  padding-top: calc(var(--nav-height) + clamp(1.5rem, 3.5vh, 2.5rem));
+  padding-bottom: clamp(2.5rem, 4vh, 4rem);
 }
 
 .visit__header {

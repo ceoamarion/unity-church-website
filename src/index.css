@@ -96,8 +96,6 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: auto; /* Lenis handles smooth scroll */
-  scroll-padding-top: 64px;
-  scroll-padding-top: var(--nav-height, 64px);
 }
 
 section[id],
@@ -110,16 +108,10 @@ main > *[id],
 #give,
 #spaces,
 #hero {
-  scroll-margin-top: 64px;
-  scroll-margin-top: var(--nav-height, 64px);
+  scroll-margin-top: 0;
 }
 
 @media (max-width: 768px) {
-  html {
-    scroll-padding-top: 56px;
-    scroll-padding-top: var(--nav-height, 56px);
-  }
-
   section[id],
   div[id],
   footer[id],
@@ -130,8 +122,7 @@ main > *[id],
   #give,
   #spaces,
   #hero {
-    scroll-margin-top: 56px;
-    scroll-margin-top: var(--nav-height, 56px);
+    scroll-margin-top: 0;
   }
 }
 

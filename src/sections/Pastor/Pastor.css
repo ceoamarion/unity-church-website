@@ -2,7 +2,8 @@
 
 .pastor {
   position: relative;
-  padding: clamp(6rem, 11vh, 9.5rem) 0;
+  padding-top: calc(var(--nav-height) + clamp(2rem, 4vh, 3.5rem));
+  padding-bottom: clamp(3rem, 6vh, 5rem);
   background-color: var(--color-bg-dark);
   color: var(--color-text-light);
   overflow: hidden;

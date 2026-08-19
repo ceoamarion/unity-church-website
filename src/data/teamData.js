@@ -30,7 +30,7 @@ export const TEAM_MEMBERS = [
   {
     id: 'markel-lockhart',
     name: 'Markel Lockhart',
-    role: 'Pastoral Ministry',
+    role: 'Pastoral Team',
     department: 'Pastoral Team',
     image: markelLockhartImg,
     objectPosition: 'center 15%',
@@ -43,7 +43,7 @@ export const TEAM_MEMBERS = [
     id: 'brian-baxter',
     name: 'Brian Baxter',
     role: 'Pastoral Team',
-    department: 'Pastoral Care & Outreach',
+    department: 'Pastoral Team',
     image: brianBaxterImg,
     objectPosition: 'center 12%',
     category: 'Pastoral',

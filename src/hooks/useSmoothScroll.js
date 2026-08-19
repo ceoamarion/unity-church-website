@@ -42,20 +42,15 @@ export function useSmoothScroll({
       return;
     }
 
-    // Dynamically measure the live navigation header height
-    const navElement = document.querySelector('.nav') || document.querySelector('nav') || document.querySelector('header');
-    const headerHeight = navElement ? navElement.getBoundingClientRect().height : (window.innerWidth <= 768 ? 56 : 64);
-    const offset = -Math.round(headerHeight);
-
     if (lenisRef.current) {
       lenisRef.current.scrollTo(targetElement, {
-        offset,
+        offset: 0,
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         ...customOptions,
       });
     } else {
-      const top = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY + offset);
+      const top = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY);
       window.scrollTo({ top, behavior: 'smooth' });
     }
   }, []);

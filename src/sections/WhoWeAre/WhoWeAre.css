@@ -4,7 +4,8 @@
 
 .who-we-are {
   position: relative;
-  padding: clamp(3.5rem, 6vh, 5.5rem) 0;
+  padding-top: calc(var(--nav-height) + clamp(1.5rem, 3.5vh, 2.5rem));
+  padding-bottom: clamp(2.5rem, 4vh, 4rem);
   background-color: var(--color-bg);
   overflow: hidden;
 }
