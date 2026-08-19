@@ -1,0 +1,263 @@
+/* ============================================
+   TEAM CARD — 3D Holographic Leadership Profile
+   ============================================ */
+
+.team-card {
+  position: relative;
+  background: #1A1A1A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-lg);
+  overflow: visible;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+  transform-style: preserve-3d;
+  transition: transform 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.5s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.4s ease;
+  will-change: transform;
+  cursor: default;
+}
+
+.team-card--featured {
+  border-color: rgba(200, 149, 108, 0.35);
+  background: linear-gradient(180deg, #222222 0%, #1A1A1A 100%);
+}
+
+/* Hover Lift & Holographic Border Glow */
+.team-card--hovered,
+.team-card:hover {
+  border-color: rgba(200, 149, 108, 0.55);
+  box-shadow: 0 24px 50px rgba(0, 0, 0, 0.6),
+              0 0 30px rgba(200, 149, 108, 0.22),
+              0 0 2px rgba(232, 206, 181, 0.5);
+}
+
+/* 3D Elevation Wrap */
+.team-card__3d-wrap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: inherit;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  background: inherit;
+}
+
+/* Cursor-Tracking Holographic Sheen Layer */
+.team-card__sheen {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: 0;
+  mix-blend-mode: screen;
+  border-radius: inherit;
+  transition: opacity 0.3s ease;
+}
+
+/* Subtle Hologram Border Iridescence */
+.team-card__hologram-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    135deg,
+    rgba(200, 149, 108, 0.25) 0%,
+    transparent 45%,
+    rgba(232, 206, 181, 0.2) 100%
+  );
+  opacity: 0;
+  z-index: 6;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.team-card:hover .team-card__hologram-glow {
+  opacity: 1;
+}
+
+/* Portrait Image Container — Substantial ~45% upper area */
+.team-card__image-wrap {
+  position: relative;
+  width: 100%;
+  height: 275px;
+  background: #0E0E0E;
+  overflow: hidden;
+  transform-style: preserve-3d;
+  border-top-left-radius: inherit;
+  border-top-right-radius: inherit;
+}
+
+/* Portrait Image with subtle parallax */
+.team-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transform: scale(1.02) translate3d(var(--parallax-x, 0px), var(--parallax-y, 0px), 10px);
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  will-change: transform;
+}
+
+/* Faint Holographic Sheen Sweep across portrait */
+.team-card__holo-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  opacity: 0;
+  background: linear-gradient(
+    110deg,
+    transparent 15%,
+    rgba(255, 255, 255, 0.12) 35%,
+    rgba(200, 149, 108, 0.16) 48%,
+    rgba(232, 206, 181, 0.1) 60%,
+    transparent 80%
+  );
+  background-size: 250% 250%;
+  mix-blend-mode: screen;
+  transition: opacity 0.4s ease;
+}
+
+.team-card:hover .team-card__holo-overlay {
+  opacity: 1;
+  animation: holoSweep 3s ease infinite;
+}
+
+@keyframes holoSweep {
+  0% {
+    background-position: 180% 0;
+  }
+  100% {
+    background-position: -80% 0;
+  }
+}
+
+/* Soft Vignette Overlay */
+.team-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26, 26, 26, 0.95) 0%,
+    rgba(26, 26, 26, 0.35) 26%,
+    transparent 60%
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 3D Popping Role Badge */
+.team-card__badge {
+  position: absolute;
+  bottom: 0.9rem;
+  left: 1rem;
+  z-index: 4;
+  padding: 0.35rem 0.85rem;
+  background: rgba(200, 149, 108, 0.95);
+  color: #FFFFFF;
+  border-radius: var(--radius-full);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.45);
+  transform: translateZ(24px);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.team-card:hover .team-card__badge {
+  transform: translateZ(32px) scale(1.03);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5), 0 0 12px rgba(200, 149, 108, 0.4);
+}
+
+/* Content Area */
+.team-card__content {
+  padding: 1.5rem 1.5rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  position: relative;
+  z-index: 5;
+  transform: translateZ(15px);
+}
+
+.team-card__dept {
+  color: var(--color-accent-light);
+  font-size: 0.6875rem;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.08em;
+}
+
+.team-card__name {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  margin-bottom: 0.5rem;
+}
+
+.team-card__divider {
+  width: 32px;
+  height: 2px;
+  background: var(--color-accent);
+  margin-bottom: 0.875rem;
+  border-radius: 2px;
+}
+
+.team-card__passage {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--color-text-subtle);
+  margin-top: auto;
+}
+
+/* ============================================
+   ACCESSIBILITY: Reduced Motion Support
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  .team-card {
+    transition: border-color 0.2s ease, box-shadow 0.2s ease !important;
+    transform: none !important;
+  }
+
+  .team-card__image {
+    transform: none !important;
+    transition: none !important;
+  }
+
+  .team-card__holo-overlay {
+    animation: none !important;
+  }
+
+  .team-card__badge {
+    transform: none !important;
+  }
+
+  .team-card__content {
+    transform: none !important;
+  }
+}
+
+/* ============================================
+   MOBILE & TOUCH SUPPORT
+   ============================================ */
+@media (max-width: 850px) {
+  .team-card__image-wrap {
+    height: 260px;
+  }
+
+  .team-card {
+    transform: none !important;
+  }
+
+  .team-card:active {
+    border-color: rgba(200, 149, 108, 0.5);
+    transform: scale(0.99) !important;
+  }
+}

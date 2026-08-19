@@ -21,7 +21,7 @@ export const TEAM_MEMBERS = [
     role: 'Lead Pastor',
     department: 'Senior Leadership',
     image: tjGroomsImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 12%',
     category: 'Pastoral',
     featured: true,
     passage:
@@ -33,7 +33,7 @@ export const TEAM_MEMBERS = [
     role: 'Pastoral Ministry',
     department: 'Pastoral Team',
     image: markelLockhartImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 15%',
     category: 'Pastoral',
     featured: false,
     passage:
@@ -45,7 +45,7 @@ export const TEAM_MEMBERS = [
     role: 'Pastoral Team',
     department: 'Pastoral Care & Outreach',
     image: brianBaxterImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 12%',
     category: 'Pastoral',
     featured: false,
     passage:
@@ -57,7 +57,7 @@ export const TEAM_MEMBERS = [
     role: 'Backend Manager',
     department: 'Church Operations & Administration',
     image: briyeleGambleImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 15%',
     category: 'Operations',
     featured: false,
     passage:
@@ -69,7 +69,7 @@ export const TEAM_MEMBERS = [
     role: 'Prayer Team Leader',
     department: 'Intercessory Prayer Ministry',
     image: sheliaNelsonImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 10%',
     category: 'Prayer & Care',
     featured: false,
     passage:
@@ -81,7 +81,7 @@ export const TEAM_MEMBERS = [
     role: 'Special Needs Ministry',
     department: 'Specialized Family Care',
     image: alexiusBrunsonImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 10%',
     category: 'Family & Outreach',
     featured: false,
     passage:
@@ -93,7 +93,7 @@ export const TEAM_MEMBERS = [
     role: 'Music Minister Director',
     department: 'Worship & Creative Arts',
     image: tylerBrunsonImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 12%',
     category: 'Worship',
     featured: false,
     passage:
@@ -105,7 +105,7 @@ export const TEAM_MEMBERS = [
     role: 'Music Minister Director',
     department: 'Worship & Creative Arts',
     image: shalaDinkinsImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 14%',
     category: 'Worship',
     featured: false,
     passage:
@@ -117,7 +117,7 @@ export const TEAM_MEMBERS = [
     role: 'Unity Cares Ministries Director',
     department: 'Community Outreach & Benevolence',
     image: sandraRichardsonImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 14%',
     category: 'Family & Outreach',
     featured: false,
     passage:
@@ -129,7 +129,7 @@ export const TEAM_MEMBERS = [
     role: 'Parking Lot Ministry Leader',
     department: 'First Impressions & Hospitality',
     image: ericBannisterImg,
-    objectPosition: 'center center',
+    objectPosition: 'center 12%',
     category: 'Operations',
     featured: false,
     passage:

@@ -1,29 +1,105 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { TEAM_MEMBERS, TEAM_CATEGORIES } from '../../data/teamData';
+import TeamCard from './TeamCard';
 import './TeamModal.css';
 
+/**
+ * TeamModal — High-End Leadership & Ministry Showcase Modal
+ * Displays Unity Christian Church's leaders with interactive 3D holographic profile cards.
+ */
 export default function TeamModal({ isOpen, onClose }) {
   const [activeCategory, setActiveCategory] = useState('All');
+  const backdropRef = useRef(null);
+  const gridRef = useRef(null);
 
-  // Close on Escape key press
+  // Contain scrolling and close on Escape key press
   useEffect(() => {
+    if (!isOpen) {
+      setActiveCategory('All');
+      return;
+    }
+
+    // Save previous document scroll styles
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalBodyOverscroll = document.body.style.overscrollBehavior;
+
+    // Lock body and html scrolling while modal is open
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden';
+    document.body.style.overscrollBehavior = 'contain';
+
+    // Pause smooth-scroll engine (Lenis) while modal is open
+    if (window.__lenis) {
+      window.__lenis.stop();
+    }
+
     const handleKeyDown = (e) => {
       if (e.key === 'Escape') {
         onClose();
       }
     };
 
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-      window.addEventListener('keydown', handleKeyDown);
-    } else {
-      document.body.style.overflow = '';
-      setActiveCategory('All');
+    // Wheel event handler to contain internal scrolling and prevent background scroll chaining
+    const handleWheel = (e) => {
+      const grid = gridRef.current;
+      if (!grid) {
+        e.preventDefault();
+        return;
+      }
+
+      // If wheeling outside the scrollable grid (e.g. header, footer, backdrop padding), prevent page scrolling
+      if (!grid.contains(e.target)) {
+        e.preventDefault();
+        return;
+      }
+
+      // If inside the grid, prevent scroll chaining when hitting the top or bottom boundary
+      const { scrollTop, scrollHeight, clientHeight } = grid;
+      const deltaY = e.deltaY;
+      const isScrollingDown = deltaY > 0;
+      const isScrollingUp = deltaY < 0;
+
+      const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
+      const isAtTop = scrollTop <= 0;
+
+      if ((isScrollingDown && isAtBottom) || (isScrollingUp && isAtTop)) {
+        e.preventDefault();
+      }
+    };
+
+    // Touch event handler to prevent background scroll leaking on touch devices
+    const handleTouchMove = (e) => {
+      const grid = gridRef.current;
+      if (!grid || !grid.contains(e.target)) {
+        e.preventDefault();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    const backdropEl = backdropRef.current;
+    if (backdropEl) {
+      backdropEl.addEventListener('wheel', handleWheel, { passive: false });
+      backdropEl.addEventListener('touchmove', handleTouchMove, { passive: false });
     }
 
     return () => {
-      document.body.style.overflow = '';
+      // Restore previous document scroll styles
+      document.body.style.overflow = originalBodyOverflow;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.overscrollBehavior = originalBodyOverscroll;
+
+      // Resume smooth-scroll engine (Lenis)
+      if (window.__lenis) {
+        window.__lenis.start();
+      }
+
       window.removeEventListener('keydown', handleKeyDown);
+      if (backdropEl) {
+        backdropEl.removeEventListener('wheel', handleWheel);
+        backdropEl.removeEventListener('touchmove', handleTouchMove);
+      }
     };
   }, [isOpen, onClose]);
 
@@ -34,8 +110,20 @@ export default function TeamModal({ isOpen, onClose }) {
     : TEAM_MEMBERS.filter((m) => m.category === activeCategory);
 
   return (
-    <div className="team-modal__backdrop" onClick={onClose} role="dialog" aria-modal="true" aria-labelledby="team-modal-title">
-      <div className="team-modal__container" onClick={(e) => e.stopPropagation()}>
+    <div
+      ref={backdropRef}
+      className="team-modal__backdrop"
+      data-lenis-prevent
+      onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="team-modal-title"
+    >
+      <div
+        className="team-modal__container"
+        data-lenis-prevent
+        onClick={(e) => e.stopPropagation()}
+      >
         {/* Modal Header */}
         <div className="team-modal__header">
           <div className="team-modal__header-text">
@@ -76,34 +164,10 @@ export default function TeamModal({ isOpen, onClose }) {
           ))}
         </div>
 
-        {/* Team Grid */}
-        <div className="team-modal__grid">
+        {/* Team Grid with 3D Holographic Profile Cards */}
+        <div ref={gridRef} className="team-modal__grid" data-lenis-prevent>
           {filteredMembers.map((member) => (
-            <div
-              key={member.id}
-              className={`team-card ${member.featured ? 'team-card--featured' : ''}`}
-            >
-              <div className="team-card__image-wrap">
-                <img
-                  src={member.image}
-                  alt={`${member.name} - ${member.role}`}
-                  className="team-card__image"
-                  style={{ objectPosition: member.objectPosition || 'center center' }}
-                  loading="eager"
-                />
-                <div className="team-card__image-overlay" />
-                <span className="team-card__badge text-label">
-                  {member.role}
-                </span>
-              </div>
-
-              <div className="team-card__content">
-                <span className="team-card__dept text-label">{member.department}</span>
-                <h3 className="team-card__name">{member.name}</h3>
-                <div className="team-card__divider" />
-                <p className="team-card__passage">{member.passage}</p>
-              </div>
-            </div>
+            <TeamCard key={member.id} member={member} />
           ))}
         </div>
 

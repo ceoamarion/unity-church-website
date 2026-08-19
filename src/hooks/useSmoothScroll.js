@@ -28,7 +28,7 @@ export function useSmoothScroll({
     const targetElement = typeof target === 'string' ? document.querySelector(target) : target;
     if (!targetElement) return;
 
-    // Special case for hero / top
+    // Special case for hero / top of page
     if (targetElement.id === 'hero' || target === '#hero') {
       if (lenisRef.current) {
         lenisRef.current.scrollTo(0, {
@@ -42,18 +42,11 @@ export function useSmoothScroll({
       return;
     }
 
-    const navHeight = window.innerWidth <= 768 ? 56 : 64;
-    const availableHeight = window.innerHeight - navHeight;
-    const targetHeight = targetElement.offsetHeight;
-
-    // Calculate smart centering offset so content fits and centers nicely
-    let offset = -navHeight;
-    if (targetHeight < availableHeight) {
-      const verticalPadding = (availableHeight - targetHeight) / 2;
-      offset = -(navHeight + Math.round(verticalPadding));
-    } else {
-      offset = -(navHeight + 20);
-    }
+    // Dynamically measure the live navigation header height
+    const navElement = document.querySelector('.nav') || document.querySelector('nav') || document.querySelector('header');
+    const headerHeight = navElement ? navElement.getBoundingClientRect().height : (window.innerWidth <= 768 ? 56 : 64);
+    const breathingSpace = window.innerWidth <= 768 ? 12 : 16;
+    const offset = -(Math.round(headerHeight) + breathingSpace);
 
     if (lenisRef.current) {
       lenisRef.current.scrollTo(targetElement, {
@@ -63,7 +56,7 @@ export function useSmoothScroll({
         ...customOptions,
       });
     } else {
-      const top = targetElement.getBoundingClientRect().top + window.scrollY + offset;
+      const top = Math.max(0, targetElement.getBoundingClientRect().top + window.scrollY + offset);
       window.scrollTo({ top, behavior: 'smooth' });
     }
   }, []);
@@ -79,6 +72,7 @@ export function useSmoothScroll({
     });
 
     lenisRef.current = lenis;
+    window.__lenis = lenis;
 
     // Sync Lenis with GSAP's ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update);
@@ -123,6 +117,7 @@ export function useSmoothScroll({
       gsap.ticker.remove(rafCallback);
       lenis.destroy();
       lenisRef.current = null;
+      window.__lenis = null;
     };
   }, [lerp, duration, orientation, scrollTo]);
 
