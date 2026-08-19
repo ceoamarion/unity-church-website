@@ -45,8 +45,7 @@ export function useSmoothScroll({
     // Dynamically measure the live navigation header height
     const navElement = document.querySelector('.nav') || document.querySelector('nav') || document.querySelector('header');
     const headerHeight = navElement ? navElement.getBoundingClientRect().height : (window.innerWidth <= 768 ? 56 : 64);
-    const breathingSpace = window.innerWidth <= 768 ? 12 : 16;
-    const offset = -(Math.round(headerHeight) + breathingSpace);
+    const offset = -Math.round(headerHeight);
 
     if (lenisRef.current) {
       lenisRef.current.scrollTo(targetElement, {
@@ -102,14 +101,22 @@ export function useSmoothScroll({
 
     document.addEventListener('click', handleAnchorClick);
 
-    // If initial load has hash (e.g. #pastor, #visit, #about)
-    if (window.location.hash && !window.location.hash.startsWith('#/')) {
-      const initialTarget = document.querySelector(window.location.hash);
-      if (initialTarget) {
-        setTimeout(() => {
-          scrollTo(initialTarget);
-        }, 200);
+    // If initial load has hash (e.g. #about, #pastor, #visit, #give)
+    const scrollToHash = (immediate = false) => {
+      if (window.location.hash && !window.location.hash.startsWith('#/')) {
+        const hash = window.location.hash;
+        const initialTarget = document.querySelector(hash);
+        if (initialTarget) {
+          scrollTo(initialTarget, immediate ? { immediate: true } : {});
+        }
       }
+    };
+
+    if (window.location.hash && !window.location.hash.startsWith('#/')) {
+      requestAnimationFrame(() => scrollToHash(true));
+      setTimeout(() => scrollToHash(false), 150);
+      setTimeout(() => scrollToHash(false), 450);
+      window.addEventListener('load', () => scrollToHash(false), { once: true });
     }
 
     return () => {

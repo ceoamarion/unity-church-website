@@ -91,7 +91,7 @@ export default function App() {
           <a href="#about" className="nav__link" onClick={handleNavClick}>About</a>
           <a href="#pastor" className="nav__link" onClick={handleNavClick}>Leadership</a>
           <a href="#visit" className="nav__link" onClick={handleNavClick}>Visit</a>
-          <a href="https://unitycc.breezechms.com/give/online" target="_blank" rel="noopener noreferrer" className="nav__link" onClick={handleNavClick}>Give</a>
+          <a href="#give" className="nav__link" onClick={handleNavClick}>Give</a>
           <a href="#visit" className="btn btn--primary nav__cta" onClick={handleNavClick}>Plan Your Visit</a>
         </div>
       </nav>

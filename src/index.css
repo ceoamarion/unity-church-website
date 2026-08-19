@@ -96,12 +96,43 @@ html {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   scroll-behavior: auto; /* Lenis handles smooth scroll */
-  scroll-padding-top: calc(var(--nav-height) + 1.5rem);
+  scroll-padding-top: 64px;
+  scroll-padding-top: var(--nav-height, 64px);
 }
 
 section[id],
-div[id] {
-  scroll-margin-top: calc(var(--nav-height) + 1.5rem);
+div[id],
+footer[id],
+main > *[id],
+#about,
+#pastor,
+#visit,
+#give,
+#spaces,
+#hero {
+  scroll-margin-top: 64px;
+  scroll-margin-top: var(--nav-height, 64px);
+}
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 56px;
+    scroll-padding-top: var(--nav-height, 56px);
+  }
+
+  section[id],
+  div[id],
+  footer[id],
+  main > *[id],
+  #about,
+  #pastor,
+  #visit,
+  #give,
+  #spaces,
+  #hero {
+    scroll-margin-top: 56px;
+    scroll-margin-top: var(--nav-height, 56px);
+  }
 }
 
 html.lenis,
