@@ -1,0 +1,35 @@
+.fade-section {
+  opacity: 0;
+  transition: opacity var(--duration-slow) var(--ease-out),
+              transform var(--duration-slow) var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.fade-section--up {
+  transform: translateY(40px);
+}
+
+.fade-section--down {
+  transform: translateY(-30px);
+}
+
+.fade-section--left {
+  transform: translateX(-50px);
+}
+
+.fade-section--right {
+  transform: translateX(50px);
+}
+
+.fade-section--scale {
+  transform: scale(0.95);
+}
+
+.fade-section--none {
+  transform: none;
+}
+
+.fade-section--visible {
+  opacity: 1;
+  transform: translateY(0) translateX(0) scale(1);
+}
