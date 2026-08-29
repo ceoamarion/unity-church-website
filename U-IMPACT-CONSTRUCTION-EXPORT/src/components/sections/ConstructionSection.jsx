@@ -1,7 +1,7 @@
 import React from 'react';
 import { Building2, Sparkles, Compass, Hammer } from 'lucide-react';
-import InteriorShowcase from '../../../sections/InteriorShowcase/InteriorShowcase';
-import '../../../styles/tokens.css';
+import InteriorShowcase from '../spaces/InteriorShowcase/InteriorShowcase';
+import '../../tokens.css';
 
 export default function ConstructionSection() {
   return (
