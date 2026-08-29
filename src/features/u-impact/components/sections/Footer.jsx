@@ -1,5 +1,6 @@
 import React from 'react';
 import { ArrowUp, Sparkles, HeartHandshake, Compass, Globe, Mail, ShieldCheck } from 'lucide-react';
+import uImpactLogo from '../../../../assets/u-impact-icon-transparent.png';
 
 export default function Footer({ onGetInvolvedClick }) {
   const scrollToTop = () => {
@@ -20,41 +21,59 @@ export default function Footer({ onGetInvolvedClick }) {
           flexDirection: 'column',
           alignItems: 'center',
           textAlign: 'center',
-          gap: '1.5rem',
+          position: 'relative',
+          overflow: 'hidden',
           background: 'radial-gradient(circle at 50% 0%, rgba(229, 169, 104, 0.12), rgba(5, 6, 8, 0.9) 70%)'
         }}>
-          <div className="scene-badge">
+          <div className="scene-badge" style={{ marginBottom: '1.5rem' }}>
             <Sparkles size={14} className="text-accent-gold" />
-            <span className="badge-text">THE U IMPACT MANIFESTO</span>
+            <span className="badge-text">THE JOURNEY AHEAD</span>
           </div>
 
-          <h2 className="font-display text-gradient-gold" style={{ fontSize: 'clamp(2rem, 4.5vw, 3.5rem)', fontWeight: 800, maxWidth: '850px', lineHeight: 1.15 }}>
-            "One action creates many people. <br />Many people create lasting change."
+          <h2 className="font-display text-gradient-gold" style={{
+            fontSize: 'clamp(2rem, 4.5vw, 3.5rem)',
+            fontWeight: 800,
+            lineHeight: 1.15,
+            maxWidth: '850px',
+            marginBottom: '1.5rem'
+          }}>
+            One action creates many people.<br />
+            Many people create lasting change.
           </h2>
 
-          <p className="font-sans" style={{ fontSize: '1.05rem', color: 'var(--text-secondary)', maxWidth: '650px', lineHeight: 1.6 }}>
-            U Impact is an independent, forward-thinking social impact platform dedicated to empowering grassroots leaders, neighborhoods, youth, and communities to build flourishing futures together.
+          <p className="font-sans" style={{
+            fontSize: '1.125rem',
+            color: 'var(--text-secondary)',
+            maxWidth: '650px',
+            lineHeight: 1.7,
+            marginBottom: '2.5rem'
+          }}>
+            U Impact is the living, growing expression of Unity Christian Church's commitment to community renewal, human dignity, and generational elevation.
           </p>
 
-          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '0.75rem' }}>
+          <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', justifyContent: 'center' }}>
             <a 
-              className="btn-primary" 
               href="https://unitycc.breezechms.com/give/online"
               target="_blank"
               rel="noopener noreferrer"
-              style={{ textDecoration: 'none' }}
+              className="btn-primary glow-gold" 
+              style={{ textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
             >
-              <HeartHandshake size={18} />
+              <HeartHandshake size={16} />
               JOIN AS A CHANGEMAKER
             </a>
-            <button className="btn-secondary" onClick={scrollToTop}>
-              <ArrowUp size={18} />
+            <button 
+              onClick={scrollToTop}
+              className="btn-secondary" 
+              style={{ display: 'inline-flex', alignItems: 'center', gap: '0.5rem' }}
+            >
+              <ArrowUp size={16} />
               BACK TO THE BEGINNING
             </button>
           </div>
         </div>
 
-        {/* Footer Navigation Columns */}
+        {/* Global Footer Links Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -63,8 +82,12 @@ export default function Footer({ onGetInvolvedClick }) {
         }}>
           {/* Brand Col */}
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', marginBottom: '1rem' }}>
-              <span className="nav-brand-orb pulse-gold"></span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.85rem', marginBottom: '1rem' }}>
+              <img 
+                src={uImpactLogo} 
+                alt="U Impact Logo" 
+                style={{ width: '48px', height: '48px', background: 'transparent', objectFit: 'contain', filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.5))' }} 
+              />
               <span className="font-display" style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>U IMPACT</span>
             </div>
             <p className="font-sans" style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '280px' }}>
@@ -78,7 +101,7 @@ export default function Footer({ onGetInvolvedClick }) {
               Pillars & Focus
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Youth STEM & Leadership</a>
+              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Trades & Workforce Development</a>
               <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Food Sovereignty & Pantries</a>
               <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Dignity Housing Initiatives</a>
               <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Civic Gathering Spaces</a>

@@ -3,12 +3,12 @@ import { Sparkles, Users, Utensils, Home, Palette, Activity, Heart, ArrowUpRight
 
 const PILLARS_DATA = [
   {
-    id: 'youth',
-    category: 'Youth & Future',
+    id: 'trades',
+    category: 'Trades & Careers',
     icon: Users,
-    title: 'Youth Leadership & Creative STEM Labs',
-    desc: 'Empowering the next generation with cutting-edge tech mentorship, creative media workshops, and college readiness programs.',
-    tags: ['Education', 'Mentorship', 'Tech Access'],
+    title: 'Trades & Workforce Development',
+    desc: 'Preparing the next generation with hands-on exposure to skilled trades, technical careers, and trade-school pathways. Connecting people with practical skills, mentorship, and opportunities to build a career.',
+    tags: ['SkilledTrades', 'TradeSchool', 'Workforce', 'CareerReady'],
     color: '#e5a968'
   },
   {
@@ -42,9 +42,9 @@ const PILLARS_DATA = [
     id: 'health',
     category: 'Health & Wellness',
     icon: Activity,
-    title: 'Mental Health & Holistic Wellness Outreach',
-    desc: 'Destigmatizing wellness with accessible supportive counseling, elder care check-ins, and peer-led encouragement circles.',
-    tags: ['Mental Health', 'Elder Care', 'Holistic Care'],
+    title: 'Mental Health & Physical Wellness',
+    desc: 'Promoting healthier communities through mental health awareness, supportive resources, physical activity, and wellness opportunities that encourage people to care for both their minds and bodies.',
+    tags: ['MentalHealth', 'PhysicalWellness', 'Fitness', 'Wellness'],
     color: '#fbbf24'
   },
   {
@@ -61,7 +61,7 @@ const PILLARS_DATA = [
 export default function PillarsSection() {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const categories = ['All', 'Youth & Future', 'Sustenance', 'Housing & Shelter', 'Civic Arts', 'Health & Wellness'];
+  const categories = ['All', 'Trades & Careers', 'Sustenance', 'Housing & Shelter', 'Civic Arts', 'Health & Wellness'];
 
   const filteredPillars = activeFilter === 'All' 
     ? PILLARS_DATA 

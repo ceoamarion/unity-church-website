@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Sparkles, HeartHandshake, Menu, X, Compass, Layers, Calendar, Volume2, VolumeX } from 'lucide-react';
 import { impactAudio } from '../intro/ImpactAudio';
+import uImpactLogo from '../../../../assets/u-impact-icon-transparent.png';
 import './Navbar.css';
 
 export default function Navbar({ onGetInvolvedClick, onReturnToChurch }) {
@@ -68,8 +69,13 @@ export default function Navbar({ onGetInvolvedClick, onReturnToChurch }) {
             href="#cinematic-intro" 
             className="nav-brand"
             onClick={(e) => handleNavClick(e, '#cinematic-intro')}
+            title="U Impact — United We Impact"
           >
-            <span className="nav-brand-orb pulse-gold"></span>
+            <img 
+              src={uImpactLogo} 
+              alt="U Impact Logo" 
+              className="nav-brand-logo"
+            />
             <div className="nav-brand-text">
               <span className="brand-primary font-display">U IMPACT</span>
               <span className="brand-sub font-editorial">COMMUNITY PLATFORM</span>

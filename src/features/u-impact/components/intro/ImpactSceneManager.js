@@ -5,11 +5,11 @@ import { SeedGlowShader, ShockwaveShader, createParticleTexture } from './Impact
  * Community Node Data for Scene 4 (One Becomes Many)
  */
 export const COMMUNITY_NODES = [
-  { id: 1, name: "Youth Leadership Labs", x: -14, z: 8, y: 0.8, category: "Youth & Future", focus: "Mentorship & Creative Tech" },
+  { id: 1, name: "Trades & Workforce Labs", x: -14, z: 8, y: 0.8, category: "Trades & Careers", focus: "Practical Skills & Careers" },
   { id: 2, name: "Community Food Pantry", x: 12, z: 12, y: 0.8, category: "Sustenance", focus: "Fresh Nourishment & Pantries" },
   { id: 3, name: "Shelter & Dignity Housing", x: -8, z: -16, y: 1.2, category: "Housing", focus: "Transitional Shelter & Aid" },
   { id: 4, name: "Civic Arts & Gathering Space", x: 18, z: -10, y: 0.9, category: "Civic Life", focus: "Community Arts & Public Life" },
-  { id: 5, name: "Elder Care & Wellness Network", x: -22, z: -6, y: 0.7, category: "Health", focus: "Senior Check-ins & Support" },
+  { id: 5, name: "Physical & Mental Wellness", x: -22, z: -6, y: 0.7, category: "Health & Wellness", focus: "Fitness & Mind-Body Health" },
   { id: 6, name: "Urban Green & Community Care", x: 6, z: -24, y: 0.6, category: "Neighborhood", focus: "Corridor Greenery & Care" },
   { id: 7, name: "Rapid Volunteer Dispatch", x: -16, z: -30, y: 1.0, category: "Outreach", focus: "Mutual Aid & Direct Action" },
   { id: 8, name: "Digital Literacy & Skills", x: 22, z: 4, y: 0.9, category: "Education", focus: "Tech Access & Workshops" },
