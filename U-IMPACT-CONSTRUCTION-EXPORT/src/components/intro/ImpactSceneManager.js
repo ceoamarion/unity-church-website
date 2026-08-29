@@ -139,6 +139,7 @@ export class ImpactSceneManager {
     });
     this.horizonMesh = new THREE.Mesh(horizonGeo, horizonMat);
     this.horizonMesh.position.set(0, 10, -260);
+    this.horizonMesh.visible = false; // Hidden to let real video backdrop shine through
     this.scene.add(this.horizonMesh);
   }
 
@@ -295,6 +296,7 @@ export class ImpactSceneManager {
 
     // Initial opacity state for Scene 1
     this.landscapeGroup.position.y = -12; // starts hidden underneath fog
+    this.landscapeGroup.visible = false; // Hidden to let real photorealistic video backdrop shine through
     this.scene.add(this.landscapeGroup);
   }
 

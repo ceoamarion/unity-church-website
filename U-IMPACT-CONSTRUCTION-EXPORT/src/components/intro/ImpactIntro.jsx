@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import ImpactVideoScrubber from './ImpactVideoScrubber';
 import ImpactCanvas from './ImpactCanvas';
 import ImpactOverlay from './ImpactOverlay';
 import ImpactHUD from './ImpactHUD';
@@ -82,24 +83,30 @@ export default function ImpactIntro({ onExploreClick, onGetInvolvedClick }) {
       id="cinematic-intro"
     >
       <div ref={viewportRef} className="impact-intro-viewport">
-        {/* 3D WebGL Canvas Layer */}
+        {/* 1. Cinematic Multi-Scene Video Layer (Scene 1 -> Scene 2 -> Scene 3 -> Scene 4) */}
+        <ImpactVideoScrubber 
+          progress={progress}
+          isReducedMotion={isReducedMotion}
+        />
+
+        {/* 2. 3D WebGL Stardust & Particle Raycasting Layer */}
         <ImpactCanvas 
           progress={progress}
           onHoverNode={handleHoverNode}
           isReducedMotion={isReducedMotion}
         />
 
-        {/* Ambient Dark Vignette & Gradient Overlays */}
+        {/* 3. Ambient Dark Vignette & Gradient Overlays */}
         <div className="impact-vignette-overlay" />
 
-        {/* Synchronized Editorial Typography Layer */}
+        {/* 4. Synchronized Editorial Typography Layer */}
         <ImpactOverlay 
           progress={progress}
           onExploreClick={onExploreClick}
           onGetInvolvedClick={onGetInvolvedClick}
         />
 
-        {/* HUD Controls & Gauge Layer */}
+        {/* 5. HUD Controls & Gauge Layer */}
         <ImpactHUD 
           progress={progress}
           onJumpToProgress={handleJumpToProgress}

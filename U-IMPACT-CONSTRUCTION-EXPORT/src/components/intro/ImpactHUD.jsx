@@ -13,10 +13,10 @@ export default function ImpactHUD({
 }) {
   const scenes = [
     { id: 1, label: "The Spark", range: 0.00 },
-    { id: 2, label: "Approach", range: 0.25 },
-    { id: 3, label: "Impact", range: 0.60 },
-    { id: 4, label: "Network", range: 0.78 },
-    { id: 5, label: "U Impact", range: 0.95 },
+    { id: 2, label: "Emergence", range: 0.24 },
+    { id: 3, label: "Campus", range: 0.48 },
+    { id: 4, label: "People", range: 0.72 },
+    { id: 5, label: "U Impact", range: 0.92 },
   ];
 
   const handleAudioToggle = () => {
@@ -25,10 +25,10 @@ export default function ImpactHUD({
   };
 
   const getActiveSceneIndex = () => {
-    if (progress < 0.18) return 0;
-    if (progress < 0.45) return 1;
-    if (progress < 0.72) return 2;
-    if (progress < 0.88) return 3;
+    if (progress < 0.22) return 0;
+    if (progress < 0.46) return 1;
+    if (progress < 0.70) return 2;
+    if (progress < 0.90) return 3;
     return 4;
   };
 

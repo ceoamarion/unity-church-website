@@ -5,23 +5,26 @@ export default function ImpactOverlay({ progress, onExploreClick, onGetInvolvedC
   // Helper to calculate smooth opacity for timeline ranges
   const getSceneAlpha = (start, fadeInEnd, fadeOutStart, end) => {
     if (progress < start || progress > end) return 0;
+    if (start === fadeInEnd && progress <= fadeOutStart) return 1;
     if (progress >= fadeInEnd && progress <= fadeOutStart) return 1;
     if (progress < fadeInEnd) {
-      return (progress - start) / (fadeInEnd - start);
+      const span = fadeInEnd - start;
+      return span > 0 ? (progress - start) / span : 1;
     }
-    return 1 - (progress - fadeOutStart) / (end - fadeOutStart);
+    const fadeSpan = end - fadeOutStart;
+    return fadeSpan > 0 ? 1 - (progress - fadeOutStart) / fadeSpan : 0;
   };
 
-  const alpha1 = getSceneAlpha(0.00, 0.04, 0.13, 0.18);
-  const alpha2 = getSceneAlpha(0.18, 0.23, 0.38, 0.45);
-  const alpha3 = getSceneAlpha(0.45, 0.50, 0.67, 0.72);
-  const alpha4 = getSceneAlpha(0.72, 0.76, 0.84, 0.88);
-  const alpha5 = Math.max(0, Math.min(1, (progress - 0.88) / 0.08));
+  const alpha1 = getSceneAlpha(0.00, 0.00, 0.16, 0.22);
+  const alpha2 = getSceneAlpha(0.22, 0.26, 0.40, 0.46);
+  const alpha3 = getSceneAlpha(0.46, 0.50, 0.64, 0.70);
+  const alpha4 = getSceneAlpha(0.70, 0.74, 0.86, 0.90);
+  const alpha5 = Math.max(0, Math.min(1, (progress - 0.89) / 0.07));
 
   return (
     <div className="impact-overlay-layer">
       {/* ───────────────────────────────────────────────────────────────── */}
-      {/* SCENE 1: THE BEGINNING */}
+      {/* SCENE 1: THE BEGINNING / DARK CLOUDS */}
       {/* ───────────────────────────────────────────────────────────────── */}
       <div 
         className="scene-block scene-1"
@@ -39,18 +42,18 @@ export default function ImpactOverlay({ progress, onExploreClick, onGetInvolvedC
           Everything starts <span className="text-accent-gold italic">somewhere.</span>
         </h1>
         <p className="scene-subtitle font-sans">
-          A solitary thought. A quiet intention in the vastness.
+          A quiet intention in the darkness. The anticipation of what is about to begin.
         </p>
         <div className="scene-scroll-hint">
           <span className="scroll-pill">
             <span className="mouse-wheel"></span>
-            Scroll to set change in motion
+            Scroll to set impact in motion
           </span>
         </div>
       </div>
 
       {/* ───────────────────────────────────────────────────────────────── */}
-      {/* SCENE 2: THE APPROACH */}
+      {/* SCENE 2: LIGHT BREAKING CLOUDS */}
       {/* ───────────────────────────────────────────────────────────────── */}
       <div 
         className="scene-block scene-2"
@@ -61,20 +64,20 @@ export default function ImpactOverlay({ progress, onExploreClick, onGetInvolvedC
         }}
       >
         <div className="scene-badge">
-          <span className="badge-dot"></span>
-          <span className="badge-text">02 / MOMENTUM</span>
+          <span className="badge-dot pulse-gold"></span>
+          <span className="badge-text">02 / EMERGENCE</span>
         </div>
         <h2 className="scene-title font-display">
-          One action can <br />
-          <span className="text-gradient-gold">change a place.</span>
+          Light breaks <br />
+          <span className="text-gradient-gold">through the clouds.</span>
         </h2>
         <p className="scene-subtitle font-sans">
-          Drawn toward community, energy gathers purpose, direction, and gravity.
+          One spark gathers momentum, purpose, and direction across the horizon.
         </p>
       </div>
 
       {/* ───────────────────────────────────────────────────────────────── */}
-      {/* SCENE 3: THE IMPACT */}
+      {/* SCENE 3: CAMPUS & COMMUNITY REVEAL */}
       {/* ───────────────────────────────────────────────────────────────── */}
       <div 
         className="scene-block scene-3"
@@ -86,24 +89,18 @@ export default function ImpactOverlay({ progress, onExploreClick, onGetInvolvedC
       >
         <div className="scene-badge">
           <span className="badge-dot pulse-gold"></span>
-          <span className="badge-text">03 / THE CATALYST</span>
+          <span className="badge-text">03 / THE PHYSICAL ANCHOR</span>
         </div>
         <h2 className="scene-title font-display">
-          {progress < 0.60 ? (
-            <>Reaching the <span className="text-accent-gold">ground.</span></>
-          ) : (
-            <span className="text-glow text-gradient-gold tracking-widest-plus font-bold">
-              I M P A C T .
-            </span>
-          )}
+          Reaching the <span className="text-accent-gold">ground.</span>
         </h2>
         <p className="scene-subtitle font-sans">
-          Not a destructive shock, but an awakening wave of light and human possibility.
+          Arriving at the campus — the physical space where community action takes root.
         </p>
       </div>
 
       {/* ───────────────────────────────────────────────────────────────── */}
-      {/* SCENE 4: ONE BECOMES MANY */}
+      {/* SCENE 4: LIGHT SPREADING / PEOPLE */}
       {/* ───────────────────────────────────────────────────────────────── */}
       <div 
         className="scene-block scene-4"
@@ -114,15 +111,15 @@ export default function ImpactOverlay({ progress, onExploreClick, onGetInvolvedC
         }}
       >
         <div className="scene-badge">
-          <span className="badge-dot"></span>
-          <span className="badge-text">04 / MULTIPLICATION</span>
+          <span className="badge-dot pulse-gold"></span>
+          <span className="badge-text">04 / COLLECTIVE IMPACT</span>
         </div>
         <h2 className="scene-title font-display">
-          One action. <span className="text-accent-gold italic">Many people.</span><br />
-          A living movement.
+          The impact is not just the building.<br />
+          <span className="text-accent-gold italic">The impact is the people.</span>
         </h2>
         <p className="scene-subtitle font-sans">
-          The single spark spreads radially, connecting leaders, neighbors, programs, and hope.
+          Light radiating through mentors, volunteers, neighbors, and the next generation.
         </p>
       </div>
 

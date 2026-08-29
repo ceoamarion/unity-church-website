@@ -20,8 +20,41 @@
   background-color: var(--bg-deep);
 }
 
-/* Ambient Radial Vignette */
-.impact-vignette-overlay {
+/* ==========================================================================
+   CINEMATIC MULTI-SCENE VIDEO SCRUBBER LAYER
+   ========================================================================== */
+
+.impact-video-scrubber-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  overflow: hidden;
+  background-color: var(--bg-deep);
+  pointer-events: none;
+}
+
+.impact-video-track {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  will-change: opacity, transform;
+}
+
+.impact-video-element {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: contrast(1.06) brightness(0.96) saturate(1.04);
+}
+
+.impact-cinematic-grading {
   position: absolute;
   inset: 0;
   pointer-events: none;
@@ -29,7 +62,22 @@
   background: radial-gradient(
     circle at 50% 50%,
     transparent 35%,
-    rgba(5, 6, 8, 0.4) 70%,
+    rgba(5, 6, 8, 0.3) 70%,
+    rgba(5, 6, 8, 0.85) 100%
+  );
+  mix-blend-mode: multiply;
+}
+
+/* Ambient Radial Vignette */
+.impact-vignette-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 3;
+  background: radial-gradient(
+    circle at 50% 50%,
+    transparent 30%,
+    rgba(5, 6, 8, 0.35) 65%,
     rgba(5, 6, 8, 0.95) 100%
   );
 }
