@@ -1,0 +1,15 @@
+/* ScrollScene — Structural Layout */
+
+.scroll-scene {
+  position: relative;
+  width: 100%;
+}
+
+.scroll-scene__viewport {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
