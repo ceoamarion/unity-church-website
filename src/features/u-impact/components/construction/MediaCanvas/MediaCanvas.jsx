@@ -1,0 +1,49 @@
+import VideoRenderer from './VideoRenderer';
+import ImageRenderer from './ImageRenderer';
+import './MediaCanvas.css';
+
+/**
+ * MediaCanvas — The media rendering abstraction layer.
+ * 
+ * Routes to the active renderer based on `renderer` prop.
+ * The scroll logic (ScrollScene) and overlay components never touch
+ * the renderer directly — they only pass progress and phase data.
+ * 
+ * Renderers:
+ *   'video'  → VideoRenderer (scroll-driven video scrubbing)
+ *   'image'  → ImageRenderer (layered CSS construction)
+ * 
+ * @param {Object} props
+ * @param {number} props.scrollProgress - normalized 0→1 scroll progress
+ * @param {number} props.currentPhase - current construction phase (1–8)
+ * @param {'video'|'image'} props.renderer - which renderer to use
+ * @param {React.RefObject} props.progressRef - ref for non-stale progress reads
+ * @param {string} props.videoSrc - video source URL (required for video renderer)
+ * @param {string} props.className - additional CSS classes
+ */
+export default function MediaCanvas({
+  scrollProgress = 0,
+  currentPhase = 1,
+  renderer = 'video',
+  progressRef,
+  videoSrc = '',
+  className = '',
+}) {
+  return (
+    <div className={`media-canvas ${className}`}>
+      {renderer === 'video' && (
+        <VideoRenderer
+          progress={scrollProgress}
+          progressRef={progressRef}
+          src={videoSrc}
+        />
+      )}
+      {renderer === 'image' && (
+        <ImageRenderer
+          scrollProgress={scrollProgress}
+          currentPhase={currentPhase}
+        />
+      )}
+    </div>
+  );
+}

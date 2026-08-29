@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useSmoothScroll } from './hooks/useSmoothScroll';
 import ChurchLogo from './components/ChurchLogo/ChurchLogo';
 import ImageHero from './sections/ImageHero/ImageHero';
@@ -7,42 +7,37 @@ import Pastor from './sections/Pastor/Pastor';
 import Visit from './sections/Visit/Visit';
 import Give from './sections/Give/Give';
 import Footer from './sections/Footer/Footer';
+import UImpactButton from './components/UImpactButton/UImpactButton';
+import UImpactApp from './features/u-impact/App';
 import ConstructionPreview from './features/u-impact/pages/ConstructionPreview';
 import './App.css';
 
 /**
- * App — Main application shell.
+ * App — Main application shell for Unity Christian Church.
  * 
- * Supports hash-based routing for dev previews:
- *   #/dev/construction-preview → Cinematic construction experience
- *   (default) → Unity Christian Church homepage
- * 
- * Flow:
- * 1. ImageHero: Cinematic photo hero with the actual Unity Christian Church building
- * 2. WhoWeAre: "More Than A Sunday" introduction & mission statement
- * 3. Pastor: Our Leadership & Bio
- * 4. Visit: Service times & guest registration
- * 5. Give: Generosity & Building Fund
- * 6. Footer: Address & footer CTA
- *
- * NOTE: The building/space-exploration experience (InteriorShowcase,
- * Construction, Transition, cinematic engine, etc.) has been separated
- * into src/features/u-impact/ for future use in the U Impact website.
- * See src/features/u-impact/README.md for details.
+ * Supports integrated routes:
+ *   #/u-impact or /u-impact → Complete integrated U Impact experience
+ *   #/dev/construction-preview → Cinematic construction experience dev route
+ *   (default / #/) → Unity Christian Church homepage
  */
 export default function App() {
   const { lenisRef } = useSmoothScroll();
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentRoute, setCurrentRoute] = useState(window.location.hash);
+  const [currentRoute, setCurrentRoute] = useState(window.location.hash || window.location.pathname);
+  const [isTransitioning, setIsTransitioning] = useState(false);
 
-  // Hash-based routing for dev previews
+  // Hash & pathname routing sync
   useEffect(() => {
-    const handleHashChange = () => {
-      setCurrentRoute(window.location.hash);
+    const handleLocationChange = () => {
+      setCurrentRoute(window.location.hash || window.location.pathname);
     };
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    window.addEventListener('popstate', handleLocationChange);
+    return () => {
+      window.removeEventListener('hashchange', handleLocationChange);
+      window.removeEventListener('popstate', handleLocationChange);
+    };
   }, []);
 
   // Track scroll position for nav background overlay
@@ -59,13 +54,59 @@ export default function App() {
     setIsMobileMenuOpen(false);
   };
 
+  // Smooth transition to U-Impact
+  const handleUImpactNavigate = useCallback(() => {
+    setIsMobileMenuOpen(false);
+    setIsTransitioning(true);
+
+    setTimeout(() => {
+      window.location.hash = '#/u-impact';
+      setCurrentRoute('#/u-impact');
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 350);
+    }, 200);
+  }, []);
+
+  // Return to Church homepage
+  const handleReturnToChurch = useCallback(() => {
+    setIsTransitioning(true);
+    setTimeout(() => {
+      window.location.hash = '#/';
+      setCurrentRoute('#/');
+      window.scrollTo(0, 0);
+      setTimeout(() => {
+        setIsTransitioning(false);
+      }, 350);
+    }, 200);
+  }, []);
+
+  const isUImpactRoute =
+    currentRoute === '#/u-impact' ||
+    currentRoute === '#u-impact' ||
+    currentRoute === '/u-impact';
+
   // Dev route: Construction Preview
   if (currentRoute === '#/dev/construction-preview') {
     return <ConstructionPreview />;
   }
 
+  // Integrated U Impact Experience
+  if (isUImpactRoute) {
+    return (
+      <>
+        {/* Transition Curtain Overlay */}
+        <div className={`route-transition-overlay ${isTransitioning ? 'route-transition-overlay--active' : ''}`} />
+        <UImpactApp onReturnToChurch={handleReturnToChurch} />
+      </>
+    );
+  }
+
   return (
     <div className="app">
+      {/* Route Transition Curtain Overlay */}
+      <div className={`route-transition-overlay ${isTransitioning ? 'route-transition-overlay--active' : ''}`} />
+
       {/* Dynamic Navigation Bar */}
       <nav className={`nav ${isNavScrolled ? 'nav--scrolled' : ''}`}>
         <a href="#hero" className="nav__logo">
@@ -92,6 +133,14 @@ export default function App() {
           <a href="#pastor" className="nav__link" onClick={handleNavClick}>Leadership</a>
           <a href="#visit" className="nav__link" onClick={handleNavClick}>Visit</a>
           <a href="#give" className="nav__link" onClick={handleNavClick}>Give</a>
+
+          {/* U IMPACT Button with YouTube Subscribe pill aesthetics and iridescent outline animation */}
+          <UImpactButton
+            onClick={handleUImpactNavigate}
+            isScrolled={isNavScrolled}
+            isMobile={false}
+          />
+
           <a href="#visit" className="btn btn--primary nav__cta" onClick={handleNavClick}>Plan Your Visit</a>
         </div>
       </nav>

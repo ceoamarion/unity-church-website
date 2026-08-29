@@ -12,7 +12,8 @@ gsap.registerPlugin(ScrollTrigger);
  * @param {string} options.start - ScrollTrigger start position (default: "top top")
  * @param {string} options.end - ScrollTrigger end position (default: "bottom bottom")
  * @param {boolean} options.pin - whether to pin the trigger element
- * @param {boolean} options.scrub - whether to scrub the animation (default: true)
+ * @param {boolean|number} options.scrub - whether to scrub the animation (default: true / 0.5)
+ * @param {Function} options.onUpdate - callback on progress update
  * @returns {{ progress: number, triggerRef: React.RefObject }}
  */
 export function useScrollProgress({

@@ -1,83 +1,141 @@
-# U Impact — Building & Space Exploration Experience
+# U-Impact — Standalone Component Suite & Cinematic 3D Experience
 
-> **Status:** Preserved for future use. Not rendered on the Unity Christian Church homepage.
+A completely self-contained, portable React module featuring:
+- **3D WebGL Particle System**: 500+ interactive celestial stardust particles with raycasting and HUD metrics.
+- **Scroll-Driven Video Scrubbing**: Multi-scene synchronized video runway (`full-scene.mp4`, `scene-1` through `scene-4`).
+- **Interactive Community Pillars**: 6 comprehensive pillar categories with live modal pledges and filtering.
+- **Transformation Stories**: Interactive testimonials and impact metrics.
+- **Physical Spaces & Interior Showcase**: Parallax photography and architectural room exploration.
+- **Upcoming Activations**: Real-time RSVP calendar with category tagging.
+- **Pledge & Get Involved Modal**: Interactive multi-tab pledge workflow.
+- **Audio Synthesizer & Smooth Scroll**: Web Audio ambient soundscape + Lenis momentum scroll.
 
-## What Is This?
+---
 
-This module contains the complete building/space-exploration experience that was originally developed as part of the Unity Christian Church website. It includes:
+## 1. Quick Installation into Another Project
 
-- **Scroll-driven construction animation** — A cinematic experience that shows the church being built, driven by scroll progress with GSAP ScrollTrigger
-- **Interior showcase sections** — Seven interior space sections (Lobby, Worship Stage, Gymnasium, Classrooms, Children's Ministry, Administration, Community Spaces) with alternating layouts, parallax imagery, and fade animations
-- **Transition section** — A dramatic "Step inside" bridge between the construction and interior experiences
-- **Cinematic engine** — A reusable scroll-driven video/image system with scene timelines, text reveals, and progress indicators
+### Step 1: Copy this Folder
+Copy the `u-impact-export` folder directly into your new project (for example, at `src/u-impact-export` or `components/u-impact-export`).
 
-## Directory Structure
+### Step 2: Install Dependencies
+Run the following command in your project root:
 
-```
-u-impact/
-├── index.js                    ← Barrel export (import everything from here)
-├── README.md                   ← This file
-├── sections/
-│   ├── InteriorShowcase/       ← "Explore the Spaces" — all 7 interior rooms
-│   ├── Construction/           ← Scroll-driven construction animation (GSAP)
-│   ├── Transition/             ← "Step inside" bridge section
-│   └── Hero/                   ← Full construction cinematic hero
-├── components/
-│   └── cinematic/              ← Reusable cinematic scroll engine
-│       ├── CinematicScrollExperience.jsx  ← Main orchestrator
-│       ├── MediaCanvas/        ← Video/image rendering layer
-│       ├── ScrollScene/        ← GSAP ScrollTrigger wrapper
-│       ├── TextReveal/         ← Animated text overlay
-│       ├── ProgressBar/        ← Scroll progress indicator
-│       ├── ScrollIndicator/    ← "Begin the Journey" prompt
-│       ├── sceneTimeline.js    ← Scene configuration data
-│       └── index.js            ← Cinematic barrel export
-├── pages/
-│   └── ConstructionPreview.jsx ← Dev preview page (accessible via /#/dev/construction-preview)
-├── hooks/
-│   └── useScrollProgress.js    ← GSAP ScrollTrigger progress hook
-└── config/
-    └── sceneTimeline.js        ← Compatibility re-export
+```bash
+npm install gsap lenis lucide-react three
 ```
 
-## How to Use (Future U Impact Website)
+*(If using React 18 or 19, standard `react` and `react-dom` are also required)*
+
+### Step 3: Copy Video Assets
+Copy the video files in `u-impact-export/assets/videos/` to your target project's `public/videos/` folder:
+- `full-scene.mp4`
+- `scene-1-dark-clouds.mp4`
+- `scene-2-light-clouds.mp4`
+- `scene-3-building.mp4`
+- `scene-4-light-spreading.mp4`
+
+---
+
+## 2. Usage Examples
+
+### Option A: Render Full Turnkey Experience (1 Line)
 
 ```jsx
-// Import sections
-import { InteriorShowcase, Construction, Transition } from '../features/u-impact';
+import React from 'react';
+import { UImpactApp } from './u-impact-export';
 
-// Import the full cinematic experience
-import { CinematicScrollExperience, SCENE_TIMELINE } from '../features/u-impact';
+export default function App() {
+  return <UImpactApp />;
+}
+```
 
-// Use in your page
-function UImpactPage() {
+### Option B: Import Individual Modular Components
+
+```jsx
+import React from 'react';
+import { 
+  ImpactIntro, 
+  PillarsSection, 
+  StoriesSection, 
+  ConstructionSection, 
+  UpcomingSection,
+  Navbar,
+  Footer,
+  useLenis
+} from './u-impact-export';
+
+import './u-impact-export/styles/index.css';
+import './u-impact-export/styles/tokens.css';
+
+export default function CustomPage() {
+  useLenis();
+
   return (
-    <main>
-      <CinematicScrollExperience
-        scenes={SCENE_TIMELINE}
-        videoSrc="/video/construction.mp4"
-        height="600vh"
-      />
-      <Transition />
-      <InteriorShowcase />
-    </main>
+    <div className="u-impact-app">
+      <Navbar onGetInvolvedClick={() => console.log('Open modal')} />
+      <main>
+        <ImpactIntro />
+        <PillarsSection />
+        <StoriesSection />
+        <ConstructionSection />
+        <UpcomingSection />
+      </main>
+      <Footer />
+    </div>
   );
 }
 ```
 
-## Shared Dependencies
+### Option C: Next.js (App Router) Integration
 
-This module depends on shared components that remain in `src/components/`:
-- `FadeSection` — Scroll-triggered fade-in animations
-- `ParallaxImage` — Parallax scrolling image wrapper
-- `ChurchLogo` — Church logo component
+Since this module utilizes WebGL, GSAP ScrollTrigger, and Web Audio APIs, ensure the parent component is a Client Component:
 
-And shared libraries:
-- `gsap` + `ScrollTrigger` — Scroll-driven animations
-- `lenis` — Smooth scrolling (initialized at app root level)
+```tsx
+'use client';
 
-## Video Assets
+import dynamic from 'next/dynamic';
 
-The construction videos are stored in `src/assets/` and served from `public/video/`:
-- Scene 1–8 individual clips
-- Combined construction video
+const UImpactApp = dynamic(
+  () => import('./u-impact-export').then(mod => mod.UImpactApp),
+  { ssr: false }
+);
+
+export default function Page() {
+  return <UImpactApp />;
+}
+```
+
+---
+
+## 3. Google Fonts Setup
+
+For optimal typography, include these Google Fonts in your `index.html` or `layout.tsx`:
+
+```html
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+```
+
+---
+
+## 4. Folder Structure Reference
+
+```
+u-impact-export/
+├── index.js                     ← Universal Master Export
+├── App.jsx                      ← Turnkey Root Experience (<UImpactApp />)
+├── package.json                 ← Required dependencies & versions
+├── README.md                    ← Integration guide
+├── assets/
+│   └── videos/                  ← Scrubber videos for public/videos
+├── components/
+│   ├── intro/                   ← 3D WebGL Particle & Cinematic Hero
+│   ├── navigation/              ← Glassmorphic Navbar
+│   ├── sections/                ← Community, Pillars, Stories, Construction, Upcoming, Modal
+│   ├── construction/            ← Cinematic Scroll Video Scrubbing System
+│   └── spaces/                  ← Architectural Spaces & Showcases
+├── hooks/                       ← Lenis, ScrollProgress, SmoothScroll, LazyMedia
+├── data/                        ← Scene Timelines & Triggers
+└── styles/                      ← Tokens & Global Dark Stylesheet
+```

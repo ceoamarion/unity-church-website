@@ -165,11 +165,41 @@
   }
 
   .nav__cta {
-    margin-top: 1rem;
+    margin-top: 0.75rem;
     width: 100%;
     text-align: center;
     justify-content: center;
   }
+
+  .nav__links .u-impact-btn {
+    width: 100%;
+    margin-top: 1.25rem;
+    padding: 0.75rem 1.25rem;
+    justify-content: center;
+    background: #1A1A1A;
+    border-color: #1A1A1A;
+    color: #FFFFFF;
+    font-size: 0.8125rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* ---------- Route Transition Overlay ---------- */
+.route-transition-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, rgba(229, 169, 104, 0.18), rgba(5, 6, 8, 0.98) 70%);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  opacity: 0;
+  transition: opacity 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.route-transition-overlay--active {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* ---------- Section Spacing ---------- */

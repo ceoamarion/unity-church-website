@@ -1,4 +1,5 @@
-import { CinematicScrollExperience, SCENE_TIMELINE } from '../components/cinematic';
+import CinematicScrollExperience from '../components/construction/CinematicScrollExperience/CinematicScrollExperience';
+import { SCENE_TIMELINE } from '../data/sceneTimeline';
 
 /**
  * ConstructionPreview — Development-only route for reviewing the
