@@ -126,14 +126,14 @@ export const TEAM_MEMBERS = [
   {
     id: 'eric-bannister',
     name: 'Eric Bannister',
-    role: 'Parking Lot Ministry Leader',
-    department: 'First Impressions & Hospitality',
+    role: "Men's Ministry Leader",
+    department: "Men's Ministry",
     image: ericBannisterImg,
     objectPosition: 'center 12%',
-    category: 'Operations',
+    category: 'Family & Outreach',
     featured: false,
     passage:
-      'Creating the very first warm, joyful, and safe experience for every guest and member entering our church campus. Eric leads our parking and arrival team with faithful hospitality and servant leadership.',
+      'Helping men grow in faith, build meaningful friendships, and serve their families and community. Eric leads our men’s ministry with a heart for discipleship, encouragement, and servant leadership.',
   },
 ];
 

@@ -1,33 +1,35 @@
 import React from 'react';
 import { Calendar, Clock, Sparkles, HeartHandshake } from 'lucide-react';
 
+import { IMPACT_PROGRAMS } from '../../../../data/impactPrograms';
+
 const UPCOMING_EVENTS = [
   {
     id: 1,
     isConfirmedNext: true,
     dateBox: { top: "AUG", main: "29" },
     time: "5:00 PM",
-    title: "Gala",
+    title: IMPACT_PROGRAMS[3].title,
     category: "Building Fundraiser",
-    description: "An evening gathering supporting the effort to raise funds for the building.",
+    description: IMPACT_PROGRAMS[3].desc,
     statusLabel: "Confirmed Next Event"
   },
   {
     id: 2,
     isTBD: true,
     dateBox: { top: "DATE", main: "TBD" },
-    title: "Community Baby Shower",
+    title: IMPACT_PROGRAMS[1].title,
     category: "Community Support",
-    description: "A community gathering dedicated to supporting local families, expectant mothers, and newborns.",
+    description: IMPACT_PROGRAMS[1].desc,
     statusLabel: "To Be Determined"
   },
   {
     id: 3,
     isTBD: true,
     dateBox: { top: "DATE", main: "TBD" },
-    title: "Christmas Event",
+    title: IMPACT_PROGRAMS[2].title,
     category: "Holiday Fellowship",
-    description: "Annual community Christmas fellowship and celebration.",
+    description: IMPACT_PROGRAMS[2].desc,
     statusLabel: "To Be Determined"
   },
   {
@@ -43,9 +45,9 @@ const UPCOMING_EVENTS = [
     id: 5,
     isTBD: true,
     dateBox: { top: "DATE", main: "TBD" },
-    title: "Summer Camp",
+    title: IMPACT_PROGRAMS[0].title,
     category: "Youth Enrichment",
-    description: "Youth summer enrichment, activities, and leadership development.",
+    description: IMPACT_PROGRAMS[0].desc,
     statusLabel: "To Be Determined"
   }
 ];

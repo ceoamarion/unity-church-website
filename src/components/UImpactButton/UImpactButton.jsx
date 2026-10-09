@@ -20,6 +20,7 @@ export default function UImpactButton({
   const [isActivating, setIsActivating] = useState(false);
 
   const handleClick = (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || !onClick) return;
     e.preventDefault();
     if (isActivating) return;
 
@@ -37,8 +38,8 @@ export default function UImpactButton({
   };
 
   return (
-    <button
-      type="button"
+    <a
+      href="/u-impact/"
       className={`u-impact-btn ${isScrolled ? 'u-impact-btn--scrolled' : ''} ${isMobile ? 'u-impact-btn--mobile' : ''} ${isActivating ? 'u-impact-btn--activating' : ''} ${className}`}
       onClick={handleClick}
       aria-label="Experience U Impact"
@@ -104,6 +105,6 @@ export default function UImpactButton({
         <span className="u-impact-btn__dot" aria-hidden="true" />
         <span className="u-impact-btn__text">U IMPACT</span>
       </span>
-    </button>
+    </a>
   );
 }

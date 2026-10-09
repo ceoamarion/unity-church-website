@@ -11,26 +11,29 @@ import UImpactButton from './components/UImpactButton/UImpactButton';
 import UImpactApp from './features/u-impact/App';
 import ConstructionPreview from './features/u-impact/pages/ConstructionPreview';
 import './App.css';
+import { getRoute, normalizeLegacyRoute } from './routing';
+import { updateSeo } from './seo';
 
 /**
  * App — Main application shell for Unity Christian Church.
  * 
  * Supports integrated routes:
- *   #/u-impact or /u-impact → Complete integrated U Impact experience
+ *   /u-impact/ → Complete integrated U Impact experience (legacy hashes supported)
  *   #/dev/construction-preview → Cinematic construction experience dev route
  *   (default / #/) → Unity Christian Church homepage
  */
-export default function App() {
-  const { lenisRef } = useSmoothScroll();
+export default function App({ initialRoute = '/' }) {
+  useSmoothScroll();
   const [isNavScrolled, setIsNavScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [currentRoute, setCurrentRoute] = useState(window.location.hash || window.location.pathname);
+  const [currentRoute, setCurrentRoute] = useState(initialRoute);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
   // Hash & pathname routing sync
   useEffect(() => {
     const handleLocationChange = () => {
-      setCurrentRoute(window.location.hash || window.location.pathname);
+      normalizeLegacyRoute();
+      setCurrentRoute(getRoute(window.location));
     };
     window.addEventListener('hashchange', handleLocationChange);
     window.addEventListener('popstate', handleLocationChange);
@@ -39,6 +42,8 @@ export default function App() {
       window.removeEventListener('popstate', handleLocationChange);
     };
   }, []);
+
+  useEffect(() => { updateSeo(currentRoute); }, [currentRoute]);
 
   // Track scroll position for nav background overlay
   useEffect(() => {
@@ -60,8 +65,8 @@ export default function App() {
     setIsTransitioning(true);
 
     setTimeout(() => {
-      window.location.hash = '#/u-impact';
-      setCurrentRoute('#/u-impact');
+      window.history.pushState(null, '', '/u-impact/');
+      setCurrentRoute('/u-impact/');
       setTimeout(() => {
         setIsTransitioning(false);
       }, 350);
@@ -72,8 +77,8 @@ export default function App() {
   const handleReturnToChurch = useCallback(() => {
     setIsTransitioning(true);
     setTimeout(() => {
-      window.location.hash = '#/';
-      setCurrentRoute('#/');
+      window.history.pushState(null, '', '/');
+      setCurrentRoute('/');
       window.scrollTo(0, 0);
       setTimeout(() => {
         setIsTransitioning(false);
@@ -84,7 +89,7 @@ export default function App() {
   const isUImpactRoute =
     currentRoute === '#/u-impact' ||
     currentRoute === '#u-impact' ||
-    currentRoute === '/u-impact';
+    currentRoute === '/u-impact/';
 
   // Dev route: Construction Preview
   if (currentRoute === '#/dev/construction-preview') {

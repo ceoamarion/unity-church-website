@@ -43,11 +43,12 @@ export default function Navbar({ onGetInvolvedClick, onReturnToChurch }) {
   };
 
   const handleReturnChurch = (e) => {
+    if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
     e.preventDefault();
     if (onReturnToChurch) {
       onReturnToChurch();
     } else {
-      window.location.hash = '#/';
+      window.location.href = '/';
     }
   };
 
@@ -57,7 +58,7 @@ export default function Navbar({ onGetInvolvedClick, onReturnToChurch }) {
         {/* Brand Group */}
         <div className="nav-brand-group">
           <a 
-            href="#/" 
+            href="/"
             className="nav-return-church"
             onClick={handleReturnChurch}
             title="Return to Unity Christian Church Homepage"
@@ -134,7 +135,7 @@ export default function Navbar({ onGetInvolvedClick, onReturnToChurch }) {
         <div className="mobile-drawer glass-panel animate-fade-in">
           <div className="mobile-drawer-links font-editorial">
             <a
-              href="#/"
+              href="/"
               className="mobile-link-item"
               style={{ color: 'var(--accent-gold-light)', borderBottom: '1px solid rgba(255,255,255,0.08)', paddingBottom: '0.75rem', marginBottom: '0.5rem' }}
               onClick={(e) => {

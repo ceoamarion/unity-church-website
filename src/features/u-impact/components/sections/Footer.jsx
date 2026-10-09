@@ -91,7 +91,7 @@ export default function Footer({ onGetInvolvedClick }) {
               <span className="font-display" style={{ fontSize: '1.35rem', fontWeight: 800, color: 'var(--text-primary)' }}>U IMPACT</span>
             </div>
             <p className="font-sans" style={{ fontSize: '0.875rem', color: 'var(--text-muted)', lineHeight: 1.6, maxWidth: '280px' }}>
-              Transformative community initiatives, youth empowerment, food sovereignty, and physical gathering spaces.
+              Free youth summer camp, family support, Christmas outreach, and community programs through Unity Christian Church in Alcolu, SC.
             </p>
           </div>
 
@@ -101,10 +101,10 @@ export default function Footer({ onGetInvolvedClick }) {
               Pillars & Focus
             </h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
-              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Trades & Workforce Development</a>
-              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Food Sovereignty & Pantries</a>
-              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Dignity Housing Initiatives</a>
-              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Civic Gathering Spaces</a>
+              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Unity Youth Camp</a>
+              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Community Wide Baby Shower</a>
+              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Unity R US Christmas Store</a>
+              <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>A Night of Unity Gala</a>
               <a href="#pillars" style={{ color: 'var(--text-secondary)', fontSize: '0.875rem', textDecoration: 'none' }}>Rapid Volunteer Squads</a>
             </div>
           </div>

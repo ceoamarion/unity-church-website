@@ -97,7 +97,7 @@ export default function ImageHero() {
       <div ref={mediaRef} className="image-hero__media">
         <img
           src="/images/unity-church-exterior.png"
-          alt="Unity Christian Church — exterior view of the church building with its sign visible"
+          alt="Unity Christian Church in Alcolu, South Carolina — church exterior and welcome sign"
           className={`image-hero__img ${isLoaded ? 'image-hero__img--loaded' : 'image-hero__img--loading'}`}
           onLoad={() => setIsLoaded(true)}
           fetchPriority="high"

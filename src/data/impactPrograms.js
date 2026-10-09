@@ -1,0 +1,51 @@
+// Shared by program cards, upcoming events, and search metadata.
+export const IMPACT_PROGRAMS = [
+  {
+    id: 'youth-camp',
+    category: 'Youth & Summer Camp',
+    title: 'Unity Youth Camp',
+    desc: 'A free summer camp for children and teens ages 5–17, offering a welcoming place to learn, build friendships, and grow. Unity Youth Camp brings young people together for a summer of discovery, encouragement, and community.',
+    tags: ['FreeSummerCamp', 'Ages5to17', 'Youth', 'Community'],
+    color: '#e5a968',
+  },
+  {
+    id: 'baby-shower',
+    category: 'Parents & Little Ones',
+    title: 'Community Wide Baby Shower',
+    desc: 'A free baby shower open to the entire city and surrounding community, celebrating expecting mothers and parents with children up to 2 years old. Come together for encouragement, connection, and a caring community as your family grows.',
+    tags: ['FreeBabyShower', 'ExpectingParents', 'FamilySupport'],
+    color: '#6ee7b7',
+  },
+  {
+    id: 'christmas-store',
+    category: 'Christmas & Families',
+    title: 'Unity R US Christmas Store',
+    desc: 'Our annual free Christmas store provides a full Christmas for more than 300 families. Through the generosity of our community, Unity R US shares the joy of the season and helps families celebrate together.',
+    tags: ['FreeChristmasStore', '300PlusFamilies', 'ChristmasJoy'],
+    color: '#93c5fd',
+  },
+  {
+    id: 'unity-gala',
+    category: 'Gala & Giving',
+    title: 'A Night of Unity Gala',
+    desc: 'An annual evening of fellowship and generosity that raises funds for our building project and year-round community programming. A Night of Unity Gala brings us together to celebrate our mission and help build what comes next.',
+    tags: ['NightOfUnity', 'BuildingFund', 'CommunityPrograms'],
+    color: '#f472b6',
+  },
+  {
+    id: 'health',
+    category: 'Health & Wellness',
+    title: 'Mental Health & Physical Wellness',
+    desc: 'Promoting healthier communities through mental health awareness, supportive resources, physical activity, and wellness opportunities that encourage people to care for both their minds and bodies.',
+    tags: ['MentalHealth', 'PhysicalWellness', 'Fitness', 'Wellness'],
+    color: '#fbbf24',
+  },
+  {
+    id: 'volunteer',
+    category: 'Rapid Mobilization',
+    title: 'Rapid Volunteer Squad & Mutual Aid',
+    desc: 'A ready network of volunteers responding to neighborhood needs, community service projects, and local outreach efforts.',
+    tags: ['MutualAid', 'Volunteering', 'Outreach'],
+    color: '#a78bfa',
+  },
+];

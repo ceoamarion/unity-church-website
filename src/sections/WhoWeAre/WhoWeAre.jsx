@@ -24,6 +24,14 @@ export default function WhoWeAre() {
           <div className="who-we-are__divider" />
         </FadeSection>
 
+        <FadeSection direction="up" delay={0.15}>
+          <p className="who-we-are__mission-text">
+            Unity Christian Church is a welcoming church in Alcolu, South Carolina,
+            where faith builds community. Join us for worship, prayer, and Bible study,
+            or discover how to serve local families through <a href="/u-impact/">Unity Impact</a>.
+          </p>
+        </FadeSection>
+
         {/* Mission Label */}
         <FadeSection direction="up" delay={0.2}>
           <span className="who-we-are__label">Our Mission</span>

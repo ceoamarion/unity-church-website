@@ -1,67 +1,15 @@
 import React, { useState } from 'react';
-import { Sparkles, Users, Utensils, Home, Palette, Activity, Heart, ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import { Sparkles, Users, Baby, Gift, Activity, Heart, ArrowUpRight } from 'lucide-react';
 
-const PILLARS_DATA = [
-  {
-    id: 'trades',
-    category: 'Trades & Careers',
-    icon: Users,
-    title: 'Trades & Workforce Development',
-    desc: 'Preparing the next generation with hands-on exposure to skilled trades, technical careers, and trade-school pathways. Connecting people with practical skills, mentorship, and opportunities to build a career.',
-    tags: ['SkilledTrades', 'TradeSchool', 'Workforce', 'CareerReady'],
-    color: '#e5a968'
-  },
-  {
-    id: 'food',
-    category: 'Sustenance',
-    icon: Utensils,
-    title: 'Community Food Sanctuary & Pantry Network',
-    desc: 'Ensuring food security across neighboring communities through fresh produce distribution and dignity-first community pantries.',
-    tags: ['Food Support', 'Nutrition', 'Direct Aid'],
-    color: '#6ee7b7'
-  },
-  {
-    id: 'housing',
-    category: 'Housing & Shelter',
-    icon: Home,
-    title: 'Dignity Housing & Transitional Support',
-    desc: 'Providing supportive guidance, transitional home assistance, and long-term economic stabilizing pathways for families.',
-    tags: ['Housing', 'Family Stability', 'Advocacy'],
-    color: '#93c5fd'
-  },
-  {
-    id: 'civic',
-    category: 'Civic Arts',
-    icon: Palette,
-    title: 'Civic Gathering Halls & Community Arts',
-    desc: 'Creating open public spaces where neighborhood voices converge, creative expression thrives, and civic fellowship is forged.',
-    tags: ['Culture', 'Public Space', 'Community Voice'],
-    color: '#f472b6'
-  },
-  {
-    id: 'health',
-    category: 'Health & Wellness',
-    icon: Activity,
-    title: 'Mental Health & Physical Wellness',
-    desc: 'Promoting healthier communities through mental health awareness, supportive resources, physical activity, and wellness opportunities that encourage people to care for both their minds and bodies.',
-    tags: ['MentalHealth', 'PhysicalWellness', 'Fitness', 'Wellness'],
-    color: '#fbbf24'
-  },
-  {
-    id: 'volunteer',
-    category: 'Rapid Mobilization',
-    icon: Heart,
-    title: 'Rapid Volunteer Squad & Mutual Aid',
-    desc: 'A ready network of volunteers responding to neighborhood needs, community service projects, and local outreach efforts.',
-    tags: ['Mutual Aid', 'Volunteering', 'Outreach'],
-    color: '#a78bfa'
-  }
-];
+import { IMPACT_PROGRAMS } from '../../../../data/impactPrograms';
+
+const icons = [Users, Baby, Gift, Sparkles, Activity, Heart];
+const PILLARS_DATA = IMPACT_PROGRAMS.map((program, index) => ({ ...program, icon: icons[index] }));
 
 export default function PillarsSection() {
   const [activeFilter, setActiveFilter] = useState('All');
 
-  const categories = ['All', 'Trades & Careers', 'Sustenance', 'Housing & Shelter', 'Civic Arts', 'Health & Wellness'];
+  const categories = ['All', ...new Set(PILLARS_DATA.map(p => p.category))];
 
   const filteredPillars = activeFilter === 'All' 
     ? PILLARS_DATA 
@@ -81,7 +29,7 @@ export default function PillarsSection() {
             Where intention transforms into lasting community impact.
           </h2>
           <p className="font-sans" style={{ fontSize: 'var(--text-body-lg)', color: 'var(--text-secondary)', lineHeight: 1.6 }}>
-            Explore our foundational pillars of community transformation. Every initiative is built collaboratively with the people it serves.
+            Unity Impact is the community outreach ministry of Unity Christian Church in Alcolu, South Carolina. Explore our free youth summer camp, family celebrations, Christmas support, and opportunities to give and serve.
           </p>
         </div>
 
@@ -91,6 +39,7 @@ export default function PillarsSection() {
             <button
               key={cat}
               onClick={() => setActiveFilter(cat)}
+              aria-pressed={activeFilter === cat}
               className="font-editorial"
               style={{
                 padding: '0.55rem 1.25rem',
@@ -113,7 +62,7 @@ export default function PillarsSection() {
         {/* Pillars Grid */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(360px, 1fr))',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%, 360px), 1fr))',
           gap: '1.75rem',
           marginBottom: '1rem'
         }}>

@@ -5,10 +5,10 @@ import { SeedGlowShader, ShockwaveShader, createParticleTexture } from './Impact
  * Community Node Data for Scene 4 (One Becomes Many)
  */
 export const COMMUNITY_NODES = [
-  { id: 1, name: "Trades & Workforce Labs", x: -14, z: 8, y: 0.8, category: "Trades & Careers", focus: "Practical Skills & Careers" },
-  { id: 2, name: "Community Food Pantry", x: 12, z: 12, y: 0.8, category: "Sustenance", focus: "Fresh Nourishment & Pantries" },
-  { id: 3, name: "Shelter & Dignity Housing", x: -8, z: -16, y: 1.2, category: "Housing", focus: "Transitional Shelter & Aid" },
-  { id: 4, name: "Civic Arts & Gathering Space", x: 18, z: -10, y: 0.9, category: "Civic Life", focus: "Community Arts & Public Life" },
+  { id: 1, name: "Unity Youth Camp", x: -14, z: 8, y: 0.8, category: "Youth & Summer Camp", focus: "Free Summer Camp • Ages 5–17" },
+  { id: 2, name: "Community Wide Baby Shower", x: 12, z: 12, y: 0.8, category: "Parents & Little Ones", focus: "Expecting Parents & Children Up to 2" },
+  { id: 3, name: "Unity R US Christmas Store", x: -8, z: -16, y: 1.2, category: "Christmas & Families", focus: "Free Christmas for 300+ Families" },
+  { id: 4, name: "A Night of Unity Gala", x: 18, z: -10, y: 0.9, category: "Gala & Giving", focus: "Building Fund & Year-Round Programs" },
   { id: 5, name: "Physical & Mental Wellness", x: -22, z: -6, y: 0.7, category: "Health & Wellness", focus: "Fitness & Mind-Body Health" },
   { id: 6, name: "Urban Green & Community Care", x: 6, z: -24, y: 0.6, category: "Neighborhood", focus: "Corridor Greenery & Care" },
   { id: 7, name: "Rapid Volunteer Dispatch", x: -16, z: -30, y: 1.0, category: "Outreach", focus: "Mutual Aid & Direct Action" },
